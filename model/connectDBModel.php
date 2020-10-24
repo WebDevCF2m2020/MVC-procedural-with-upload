@@ -1,7 +1,7 @@
 <?php
 // procedural mysqli connection
 
-function connectDB(){
+function connectDBModel(){
     $connect = @mysqli_connect(DB_HOST,DB_USER,DB_PWD,DB_NAME, DB_PORT);
     // if error
     if(mysqli_connect_errno()){

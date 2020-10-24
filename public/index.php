@@ -7,34 +7,35 @@ session_start();
 
 // dependencies
 require_once "../config.php";
-require_once "../model/connectDB.php";
+require_once "../model/connectDBModel.php";
 
 // DB connection
-$db = connectDB();
+$db = connectDBModel();
 
 // connect error
 if(!$db){
     // view  connect error
     include "../view/errorConnectView.php";
     // stop working
-    die();
+    exit();
 }
 
+// if we're connected
 if(isset($_SESSION['identifiant'])&&$_SESSION['identifiant']==session_id()){
 
-    // si on est admin
-    if($_SESSION['iddroit']==1){
+    // if we are admin
+    if($_SESSION['idpermissions']==1){
         require_once "../controller/adminController.php";
-        exit;
+        exit();
     }
-    // si on est rédact.eur.rice
-    if($_SESSION['iddroit']==2){
+    // if we are redactor
+    if($_SESSION['idpermissions']==2){
         require_once "../controller/redacController.php";
-        exit;
+        exit();
     }
 
 
 }
 
-// loading du contrôleur public si aucune condition ne sont vraies avant
+// we aren't connected
 require_once "../controller/publicController.php";

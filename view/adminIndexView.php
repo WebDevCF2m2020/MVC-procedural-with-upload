@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-7 col-sm-6">
                 <h1>Administration</h1>
-                <p class="lead">Bienvenue <?= $_SESSION['thename'] ?>, vous êtes <?= $_SESSION['droit_name'] ?></p>
+                <p class="lead">Bienvenue <?= $_SESSION['users_name'] ?>, vous êtes <?= $_SESSION['permissions_name'] ?></p>
                 <?php
                 if (isset($erreur)):
                     ?>
@@ -55,14 +55,14 @@
                     // tant que nous avons des articles
                     foreach ($recupPagination as $item):
                         ?>
-                        <h3><?= $item["titre"] ?></h3>
+                        <h3><?= $item["articles_title"] ?></h3>
                         <p>Actions : <a href="?p=update&id=<?= $item["idarticles"] ?>"
                                         title="Mettre à jour l'article"><img src="img/update.png" alt="update"/></a>
                             <a href="?p=delete&id=<?= $item["idarticles"] ?>" title="Supprimer l'article"><img
                                         src="img/delete.png" alt="delete"/></a></p>
-                        <p><?= cutTheTextModel($item["texte"]) ?> ... <a
+                        <p><?= cutTheTextModel($item["articles_text"]) ?> ... <a
                                     href="?detailArticle=<?= $item["idarticles"] ?>">Lire la suite</a></p>
-                        <h5>Par <?= $item["thename"] ?> <?= functionDateModel($item["thedate"]) ?></h5>
+                        <h5>Par <?= $item["users_name"] ?> <?= functionDateModel($item["articles_date"]) ?></h5>
                         <hr>
                     <?php
                     endforeach;

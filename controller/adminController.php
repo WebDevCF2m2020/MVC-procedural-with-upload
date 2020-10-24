@@ -43,12 +43,12 @@ if(isset($_GET["detailArticle"])){
 if(isset($_GET['p'])&&$_GET['p']=="create"){
 
     // si on a envoyé le formulaire (toutes les variables POST attendues existent)
-    if(isset($_POST['titre'],$_POST['texte'],$_POST['idusers'])){
+    if(isset($_POST['articles_title'],$_POST['articles_text'],$_POST['idusers'])){
 
         // traitement des variables
-        $titre= htmlspecialchars(strip_tags(trim($_POST['titre'])),ENT_QUOTES);
+        $titre= htmlspecialchars(strip_tags(trim($_POST['articles_title'])),ENT_QUOTES);
         // exception pour le strip_tags qui va accepter
-        $texte= htmlspecialchars(strip_tags(trim($_POST['texte']),'<p><br><a><img><h4><h5><b><strong><i><ul><li>'),ENT_QUOTES);
+        $texte= htmlspecialchars(strip_tags(trim($_POST['articles_text']),'<p><br><a><img><h4><h5><b><strong><i><ul><li>'),ENT_QUOTES);
         $idusers = (int) $_POST['idusers'];
 
         // si un des champs est vide (n'a pas réussi la validation des variables POST)
@@ -93,8 +93,8 @@ if(isset($_GET['p'])&&$_GET['p']=="delete"){
         if(!$recup){
             $erreur = "Article introuvable";
         }else{
-            $title = $recup["titre"];
-            $author = $recup['thename'];
+            $title = $recup["articles_title"];
+            $author = $recup['users_name'];
             // on clique sur confirmation de suppression
             if(isset($_GET['ok'])){
                 // on tente de supprimer l'article

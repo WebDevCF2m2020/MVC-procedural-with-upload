@@ -49,13 +49,13 @@
                 <form action="" name="connection" method="post">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Votre login :</label>
-                        <input name="thename" type="text" class="form-control" id="exampleInputEmail1"
+                        <input name="users_name" type="text" class="form-control" id="exampleInputEmail1"
                                aria-describedby="emailHelp" placeholder="Entrez votre login" required>
 
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Mot de passe</label>
-                        <input name="thepwd" type="password" class="form-control" id="exampleInputPassword1"
+                        <input name="users_pwd" type="password" class="form-control" id="exampleInputPassword1"
                                placeholder="Entrez votre mot de passe" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Envoyer</button>

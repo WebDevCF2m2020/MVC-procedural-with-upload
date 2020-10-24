@@ -11,10 +11,10 @@ require_once "../model/paginationModel.php";
 if(isset($_GET['p'])&&$_GET['p']=="connect"){
 
     // si le formulaire est envoyé
-    if(isset($_POST['thename'],$_POST['thepwd'])){
+    if(isset($_POST['users_name'],$_POST['users_pwd'])){
         // traitement des données
-        $thename = htmlspecialchars(strip_tags(trim($_POST['thename'])),ENT_QUOTES);
-        $thepwd = htmlspecialchars(strip_tags(trim($_POST['thepwd'])),ENT_QUOTES);
+        $thename = htmlspecialchars(strip_tags(trim($_POST['users_name'])),ENT_QUOTES);
+        $thepwd = htmlspecialchars(strip_tags(trim($_POST['users_pwd'])),ENT_QUOTES);
 
         $connect = connectUser($db,$thename,$thepwd);
 

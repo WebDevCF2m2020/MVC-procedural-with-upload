@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-7 col-sm-6">
                 <h1>Administration</h1>
-                <p class="lead">Bienvenue <?= $_SESSION['thename'] ?>, vous êtes <?= $_SESSION['droit_name'] ?></p>
+                <p class="lead">Bienvenue <?= $_SESSION['users_name'] ?>, vous êtes <?= $_SESSION['permissions_name'] ?></p>
                 <h2>Insérer un nouvel article</h2>
                 <p class="lead"><a href="./">Retournez à l'accueil de l'admin</a></p>
                 <?php
@@ -58,12 +58,12 @@
                 <form action="" name="insertion" method="post">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Votre titre :</label>
-                        <input name="titre" type="text" class="form-control" placeholder="Votre titre" required>
+                        <input name="articles_title" type="text" class="form-control" placeholder="Votre titre" required>
 
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Votre texte</label>
-                        <textarea name="texte" class="form-control" placeholder="Votre texte" required></textarea>
+                        <textarea name="articles_text" class="form-control" placeholder="Votre texte" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Choix de l'auteur</label>
@@ -74,7 +74,7 @@
                                 <input class="form-check-input" type="radio" name="idusers" id="exampleRadios1"
                                        value="<?= $item['idusers'] ?>" required>
                                 <label class="form-check-label" for="exampleRadios1">
-                                    <?= $item['thename'] ?>
+                                    <?= $item['users_name'] ?>
                                 </label>
                             </div>
 

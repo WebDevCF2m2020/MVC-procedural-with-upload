@@ -4,7 +4,7 @@ function articlesLoadAll($cdb){
     $req = "SELECT * FROM articles a 
 	INNER JOIN users u 
 		ON a.users_idusers = u.idusers
-ORDER BY a.thedate DESC;";
+ORDER BY a.articles_date DESC;";
     $recup = mysqli_query($cdb,$req);
     // si au moins 1 résultat
     if(mysqli_num_rows($recup)){
@@ -17,11 +17,11 @@ ORDER BY a.thedate DESC;";
 
 // Load all articles with author but with 300 caracters from "texte"
 function articlesLoadAllResume($cdb){
-    $req = "SELECT a.idarticles, a.titre, LEFT(a.texte,300) AS texte, a.thedate, u.idusers, u.thename 
+    $req = "SELECT a.idarticles, a.articles_title, LEFT(a.articles_text,300) AS articles_text, a.articles_date, u.idusers, u.users_name 
 FROM articles a 
 	INNER JOIN users u 
 		ON a.users_idusers = u.idusers
-ORDER BY a.thedate DESC;";
+ORDER BY a.articles_date DESC;";
     $recup = mysqli_query($cdb,$req);
     // si au moins 1 résultat
     if(mysqli_num_rows($recup)){
@@ -46,15 +46,15 @@ FROM articles";
 function articlesLoadResumePagination($cdb,$begin,$nbperpage=10){
     $begin = (int) $begin;
     $nbperpage = (int) $nbperpage;
-    $req = "SELECT a.idarticles, a.titre, LEFT(a.texte,300) AS texte, a.thedate, u.idusers, u.thename 
+    $req = "SELECT a.idarticles, a.articles_title, LEFT(a.articles_text,300) AS articles_text, a.articles_date, u.idusers, u.users_name 
 FROM articles a 
 	INNER JOIN users u 
 		ON a.users_idusers = u.idusers
-ORDER BY a.thedate DESC 
+ORDER BY a.articles_date DESC 
 LIMIT $begin, $nbperpage;";
     $recup = mysqli_query($cdb,$req);
     // si au moins 1 résultat
-    if(mysqli_num_rows($recup)){
+    if(@mysqli_num_rows($recup)){
         // on utilise le fetch all car il peut y avoir plus d'un résultat
         return mysqli_fetch_all($recup,MYSQLI_ASSOC);
     }
@@ -82,8 +82,8 @@ function articleLoadFull($connect,$id){
 // insertion d'un nouvel article
 function insertArticle($c,$title,$text,$id){
 
-    $sql="INSERT INTO articles (titre,texte,users_idusers) VALUES ('$title','$text',$id);";
-    $request = mysqli_query($c,$sql);
+    $sql="INSERT INTO articles (articles_title,articles_text,users_idusers) VALUES ('$title','$text',$id);";
+    $request = mysqli_query($c,$sql) or die(mysqli_error($c));
     return ($request)?true:false;
 }
 
@@ -108,10 +108,10 @@ function updateArticle($db,$datas,$id){
     $id = (int) $id;
     // $_POST => on pourrait utiliser extract(), plus rapide mais dangereux et non sécurisé sans mettre les mêmes lignes que celles ci-dessous
     $idarticles = (int) $datas['idarticles'];
-    $titre = htmlspecialchars(strip_tags(trim($datas['titre'])),ENT_QUOTES);
+    $titre = htmlspecialchars(strip_tags(trim($datas['articles_title'])),ENT_QUOTES);
     // exception pour le strip_tags qui va accepter les balises html entre allowable_tags
-    $texte= htmlspecialchars(strip_tags(trim($datas['texte']),'<p><br><a><img><h4><h5><b><strong><i><ul><li>'),ENT_QUOTES);
-    $thedate = htmlspecialchars(strip_tags(trim($datas['thedate'])),ENT_QUOTES);
+    $texte= htmlspecialchars(strip_tags(trim($datas['articles_text']),'<p><br><a><img><h4><h5><b><strong><i><ul><li>'),ENT_QUOTES);
+    $thedate = htmlspecialchars(strip_tags(trim($datas['articles_date'])),ENT_QUOTES);
 
     // on vérifie si la date valide existe dans la chaîne, si oui elle est mise dans $tab et séparée du reste
     $tab = preg_grep("/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/",[$thedate]);
@@ -127,9 +127,9 @@ function updateArticle($db,$datas,$id){
     if(empty($id)||empty($idarticles)||empty($titre)||
         empty($texte)||empty($thedate)||empty($users_idusers)) return "Vos champs ne sont pas correctement remplis";
 
-    $sql ="UPDATE articles SET titre = '$titre', texte ='$texte',thedate='$thedate', users_idusers= $users_idusers WHERE idarticles = $idarticles";
+    $sql ="UPDATE articles SET articles_title = '$titre', articles_text ='$texte',articles_date='$thedate', users_idusers= $users_idusers WHERE idarticles = $idarticles";
 
-   return (mysqli_query($db,$sql))? true : "Erreur inconnue lors de la modification, Veuillez recommencer";
+   return (mysqli_query($db,$sql) or die(mysqli_error($db)))? true : "Erreur inconnue lors de la modification, Veuillez recommencer";
 
 
 }

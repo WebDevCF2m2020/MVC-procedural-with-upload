@@ -49,10 +49,10 @@
                     // tant que nous avons des articles
                     foreach ($recupPagination as $item):
                         ?>
-                        <h4><?= $item["titre"] ?></h4>
-                        <p><?= cutTheTextModel($item["texte"]) ?> ... <a
+                        <h4><?= $item["articles_title"] ?></h4>
+                        <p><?= cutTheTextModel($item["articles_text"]) ?> ... <a
                                     href="?detailArticle=<?= $item["idarticles"] ?>">Lire la suite</a></p>
-                        <h5>Par <?= $item["thename"] ?> <?= functionDateModel($item["thedate"]) ?></h5>
+                        <h5>Par <?= $item["users_name"] ?> <?= functionDateModel($item["articles_date"]) ?></h5>
                         <hr>
                     <?php
                     endforeach;

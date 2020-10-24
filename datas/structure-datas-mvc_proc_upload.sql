@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `mvc_proc_upload`.`users` (
   `idusers` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `users_name` VARCHAR(45) NULL,
   `users_pwd` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_bin' NOT NULL COMMENT 'Le binaire permet au mot de passe d\'être sensible à la casse (minuscule, majuscule)',
-  `permissions_idpermission` INT UNSIGNED NULL,
+  `permissions_idpermissions` INT UNSIGNED NULL,
   PRIMARY KEY (`idusers`),
   UNIQUE INDEX `users_name_UNIQUE` (`users_name` ASC),
   INDEX `fk_users_permissions_id` (`permissions_idpermission` ASC),
@@ -49,7 +49,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mvc_proc_upload`.`articles` (
   `idarticles` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `articles_tilte` VARCHAR(150) NOT NULL,
+  `articles_title` VARCHAR(150) NOT NULL,
   `articles_text` TEXT NOT NULL,
   `articles_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `users_idusers` INT UNSIGNED NULL,

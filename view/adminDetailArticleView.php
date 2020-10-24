@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Notre article : <?= (isset($erreur)) ? $erreur : $recup['titre'] ?></title>
+    <title>Notre article : <?= (isset($erreur)) ? $erreur : $recup['articles_title'] ?></title>
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="css/custom.min.css" media="screen">
 </head>
@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-7 col-sm-6">
                 <h1>Administration</h1>
-                <p class="lead">Bienvenue <?= $_SESSION['thename'] ?>, vous êtes <?= $_SESSION['droit_name'] ?></p>
+                <p class="lead">Bienvenue <?= $_SESSION['users_name'] ?>, vous êtes <?= $_SESSION['permissions_name'] ?></p>
                 <?php
                 if (isset($erreur)):
                     ?>
@@ -47,14 +47,14 @@
                 <?php
                 else:
                     ?>
-                    <h3>Notre article : <?= $recup['titre'] ?></h3>
+                    <h3>Notre article : <?= $recup['articles_title'] ?></h3>
                     <p class="lead"><a href="./">Retournez à l'accueil de l'admin</a></p>
                     <p>Actions : <a href="?p=update&id=<?= $recup["idarticles"] ?>" title="Mettre à jour l'article"><img
                                     src="img/update.png" alt="update"/></a>
                         <a href="?p=delete&id=<?= $recup["idarticles"] ?>" title="Supprimer l'article"><img
                                     src="img/delete.png" alt="delete"/></a></p>
-                    <p><?= nl2br($recup["texte"]) ?></p>
-                    <h5>Par <?= $recup["thename"] ?> <?= functionDateModel($recup["thedate"]) ?></h5>
+                    <p><?= nl2br($recup["articles_text"]) ?></p>
+                    <h5>Par <?= $recup["users_name"] ?> <?= functionDateModel($recup["articles_date"]) ?></h5>
                     <hr>
                     <p>Actions : <a href="?p=update&id=<?= $recup["idarticles"] ?>" title="Mettre à jour l'article"><img
                                     src="img/update.png" alt="update"/></a>

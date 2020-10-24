@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Notre article : <?= (isset($erreur)) ? $erreur : $recup['titre'] ?></title>
+    <title>Notre article : <?= (isset($erreur)) ? $erreur : $recup['articles_title'] ?></title>
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="css/custom.min.css" media="screen">
 </head>
@@ -42,10 +42,10 @@
                 <?php
                 else:
                     ?>
-                    <h1>Notre article : <?= $recup['titre'] ?></h1>
+                    <h1>Notre article : <?= $recup['articles_title'] ?></h1>
                     <p class="lead"><a href="./">Retournez à l'accueil</a></p>
-                    <p><?= nl2br($recup["texte"]) ?></p>
-                    <h5>Par <?= $recup["thename"] ?> <?= functionDateModel($recup["thedate"]) ?></h5>
+                    <p><?= nl2br($recup["articles_text"]) ?></p>
+                    <h5>Par <?= $recup["users_name"] ?> <?= functionDateModel($recup["articles_date"]) ?></h5>
                     <hr>
 
                 <?php
