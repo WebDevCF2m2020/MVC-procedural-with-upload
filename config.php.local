@@ -1,0 +1,11 @@
+<?php
+// Database
+define("DB_HOST","localhost");
+define("DB_NAME","mvc_proc_upload");
+define("DB_USER","root");
+define("DB_PWD","");
+define("DB_PORT",3308);
+define("DB_CHARSET","utf8");
+
+// Article's number per page
+define("NUMBER_ARTICLE_PER_PAGE",5);
