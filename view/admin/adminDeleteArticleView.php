@@ -9,7 +9,7 @@
 <body>
 <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
     <div class="container">
-        <a href="./" class="navbar-brand">Accueil</a>
+        <a href=".." class="navbar-brand">Accueil</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

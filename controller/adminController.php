@@ -33,7 +33,7 @@ if(isset($_GET["detailArticle"])){
     }
 
     // view
-    require_once "../view/adminDetailArticleView.php";
+    require_once "../view/admin/adminDetailArticleView.php";
     exit();
 
 }
@@ -71,7 +71,7 @@ if(isset($_GET['p'])&&$_GET['p']=="create"){
     // on récupère tous les auteurs potentiels
     $recup_autors = AllUser($db);
 
-    require_once "../view/adminInsertArticleView.php";
+    require_once "../view/admin/adminInsertArticleView.php";
     //var_dump($_POST);
     exit();
 }
@@ -113,7 +113,7 @@ if(isset($_GET['p'])&&$_GET['p']=="delete"){
     }
 
 
-    require_once "../view/adminDeleteArticleView.php";
+    require_once "../view/admin/adminDeleteArticleView.php";
     //var_dump($_POST);
     exit();
 }
@@ -156,7 +156,7 @@ if(isset($_GET['p'])&&$_GET['p']=="update"){
     }
 
 
-    require_once "../view/adminUpdateArticleView.php";
+    require_once "../view/admin/adminUpdateArticleView.php";
     //var_dump($_POST);
     exit();
 }
@@ -193,4 +193,4 @@ if(!$recupPagination){
 }
 
 // Default View
-require_once "../view/adminIndexView.php";
+require_once "../view/admin/adminIndexView.php";
