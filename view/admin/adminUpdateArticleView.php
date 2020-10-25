@@ -52,8 +52,24 @@
                 endif;
                 ?>
                 <hr>
+                <p>
 
-                <form action="" name="insertion" method="post">
+                    <?php
+                    if(!empty($recupArticle["theimages_name"])):
+                        echo "<h3>Supprimer une photo liée à l'article</h3><p class=\"lead\">En cliquant simplement dessus</p>";
+                        $arrayImgName = explode("|||", $recupArticle["theimages_name"]);
+                        $arrayImgTitle = explode("|||", $recupArticle["theimages_title"]);
+                        $i=0;
+                        foreach($arrayImgName AS $img):
+                            ?>
+                            <a href="" target="_blank" title="DELETE"><img src="<?=IMG_UPLOAD_SMALL.$img?>" alt="<?=$arrayImgTitle[$i]?>"/></a>
+                            <?php
+                            $i++;
+                        endforeach;
+                    endif;
+                    ?>
+                </p>
+                <form action="" enctype="multipart/form-data" name="insertion" method="post">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Votre titre :</label>
                         <input name="articles_title" type="text" class="form-control" placeholder="Votre titre"
@@ -94,6 +110,16 @@
                         ?>
                     </div>
                     <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                    <hr>
+                    <h3>Ajouter une image</h3>
+                    <div class="form-group">
+                        <label=>Description de l'image</label>
+                        <input name="theimages_title" class="form-control" placeholder="Votre texte" >
+                    </div>
+                    <div class="form-group">
+                        <label=>Votre image :</label>
+                        <input name="theimages_name" type="file" class="form-control" placeholder="Votre image" >
+                    </div>
                 </form>
             </div>
 

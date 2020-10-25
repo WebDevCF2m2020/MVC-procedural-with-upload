@@ -110,7 +110,8 @@ function updateArticle($db,$datas,$id){
 
     $sql ="UPDATE articles SET articles_title = '$titre', articles_text ='$texte',articles_date='$thedate', users_idusers= $users_idusers WHERE idarticles = $idarticles";
 
-   return (mysqli_query($db,$sql) or die(mysqli_error($db)))? true : "Erreur inconnue lors de la modification, Veuillez recommencer";
+    $request = mysqli_query($db,$sql) or die(mysqli_error($c));
+    return ($request)? $idarticles :false;
 
 
 }
