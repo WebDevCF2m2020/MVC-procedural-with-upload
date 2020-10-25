@@ -1,5 +1,15 @@
 <?php
 /*
+ * CRUD theimages
+ */
+
+function theimagesInsert($c,$title,$name,$idarticles){
+    $title = htmlentities(strip_tags(trim($title)),ENT_QUOTES);
+    $name = htmlentities(strip_tags(trim($name)),ENT_QUOTES);
+    $idarticles = (int) $idarticles;
+}
+
+/*
  * Upload Images functions
  */
 function theimagesUpload(Array $fichier) {
@@ -16,7 +26,7 @@ function theimagesUpload(Array $fichier) {
                 // création du nouveau nom de fichier
                 $nouveauNomFichier = theimagesNewName($extend);
                 // on essaye d'envoyer physiquement le fichier
-                if (@move_uploaded_file($fichier['tmp_name'], IMG_UPLOAD_ORIGINAL . $nouveauNomFichier)) {
+                if (move_uploaded_file($fichier['tmp_name'], IMG_UPLOAD_ORIGINAL . $nouveauNomFichier)) {
                     return [$nouveauNomFichier];
                 } else {
                     return "Erreur inconnue lors du transfert";

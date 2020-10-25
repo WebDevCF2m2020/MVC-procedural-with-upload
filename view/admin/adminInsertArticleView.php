@@ -55,7 +55,7 @@
                 ?>
                 <hr>
 
-                <form action="" name="insertion" method="post">
+                <form action="" enctype="multipart/form-data"  name="insertion" method="post">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Votre titre :</label>
                         <input name="articles_title" type="text" class="form-control" placeholder="Votre titre" required>
@@ -83,9 +83,19 @@
                         ?>
                     </div>
                     <button type="submit" class="btn btn-primary">Envoyer</button>
-                </form>
-            </div>
 
+            <hr>
+                    <h3>Ajouter une image</h3>
+                <div class="form-group">
+                    <label=>Description de l'image</label>
+                    <input name="theimages_title" class="form-control" placeholder="Votre texte" >
+                </div>
+                <div class="form-group">
+                    <label=>Votre image :</label>
+                    <input name="theimages_name" type="file" class="form-control" placeholder="Votre image" >
+                </div>
+            </form>
+            </div>
         </div>
     </div>
 
