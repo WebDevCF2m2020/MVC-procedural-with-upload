@@ -21,7 +21,7 @@ Les fonctions non liées à la base de données sont également créées dans le
 - Renommez en local le fichier config.php.local en config.php
 
 ## Contrôleur frontal
-Pour lancer le projet, vous devez impérativement partir du dossier public :
+Pour lancer le projet, vous devez impérativement partir du dossier public et utiliser le contôleur frontal "index.php" :
     
     /public/index.php
     

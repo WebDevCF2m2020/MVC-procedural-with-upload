@@ -9,3 +9,8 @@ define("DB_CHARSET","utf8");
 
 // Article's number per page
 define("NUMBER_ARTICLE_PER_PAGE",5);
+
+// Upload images path
+define("IMG_UPLOAD_ORIGINAL","img/upload/origin");
+define("IMG_UPLOAD_MEDIUM","img/upload/medium");
+define("IMG_UPLOAD_SMALL","img/upload/thumb");
