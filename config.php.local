@@ -14,3 +14,6 @@ define("NUMBER_ARTICLE_PER_PAGE",5);
 define("IMG_UPLOAD_ORIGINAL","img/upload/origin");
 define("IMG_UPLOAD_MEDIUM","img/upload/medium");
 define("IMG_UPLOAD_SMALL","img/upload/thumb");
+
+// Accepted image's formats
+define("IMG_FORMAT",[".jpg", ".jpeg", ".gif", ".png"]);
