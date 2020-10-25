@@ -84,7 +84,7 @@ function insertArticle($c,$title,$text,$id){
 
     $sql="INSERT INTO articles (articles_title,articles_text,users_idusers) VALUES ('$title','$text',$id);";
     $request = mysqli_query($c,$sql) or die(mysqli_error($c));
-    return ($request)?true:false;
+    return ($request)? mysqli_insert_id($c) :false;
 }
 
 // suppression d'un article via son ID

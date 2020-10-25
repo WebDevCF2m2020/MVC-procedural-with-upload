@@ -57,29 +57,29 @@ if(isset($_GET['p'])&&$_GET['p']=="create"){
         if(empty($titre)||empty($texte)||empty($idusers)){
             $erreur = "Format des champs non valides";
         }else{
-            // insertion d'article
+            // insertion d'article avec récupération de son id
             $insert = insertArticle($db,$titre,$texte,$idusers);
-            // insertion réussie
+
+            // insertion réussie (un id et pas 0)
             if($insert){
                 // si on veut y ajouter une image
                 if(!empty($_FILES['theimages_name'])){
                     $upload = theimagesUpload($_FILES['theimages_name']);
+
                     // l'image a bien été envoyée
                     if(is_array($upload)){
-                        // on récupère l'id de l'article
-                        $idArticles = mysqli_insert_id($db);
-                        // on insert l'image
+                        // on insert l'image (et on récupère l'id de l'image)
+                        $idtheimages = theimagesInsert($db,$_POST['theimages_title'],$upload[0],$insert);
 
-                        // on récupère l'id de l'image
-
-                        // on fait le lien avec l'article
 
                     }else{
                         $error = $upload;
                     }
                 }
+                /*
                 header("Location: ./");
                 exit;
+                */
             }else{
 
                 $erreur ="Problème lors de l'insertion";

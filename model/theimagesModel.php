@@ -3,10 +3,32 @@
  * CRUD theimages
  */
 
+// INSERT INTO theimages
 function theimagesInsert($c,$title,$name,$idarticles){
     $title = htmlentities(strip_tags(trim($title)),ENT_QUOTES);
     $name = htmlentities(strip_tags(trim($name)),ENT_QUOTES);
     $idarticles = (int) $idarticles;
+    if(!empty($name)&&!empty($idarticles)){
+        $sql = "INSERT INTO theimages (theimages_title,theimages_name) VALUES ('$title','$name');";
+        $req = mysqli_query($c,$sql) or die(mysqli_error($c));
+        if($req) {
+            articles_has_theimagesInsert($c, $idarticles,mysqli_insert_id($c));
+        }else {
+            return false;
+        }
+
+    }
+}
+
+// INSERT INTO articles_has_theimages
+function articles_has_theimagesInsert($c,$idarticles,$idtheimages){
+    $idarticles = (int) $idarticles;
+    $idtheimages = (int) $idtheimages;
+    if(!empty($idtheimages)&&!empty($idarticles)){
+        $sql = "INSERT INTO articles_has_theimages VALUES ($idarticles,$idtheimages);";
+        $req = mysqli_query($c,$sql) or die(mysqli_error($c));
+        return ($req)? true : false;
+    }
 }
 
 /*
