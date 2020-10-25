@@ -2,10 +2,8 @@
 // Dependencies
 require_once "../model/articlesModel.php";
 require_once "../model/usersModel.php";
-require_once "../model/functionDateModel.php";
-require_once "../model/cutTheTextModel.php";
-// Pagination
-require_once "../model/paginationModel.php";
+require_once "../model/theimagesModel.php";
+
 
 // si on essaye de se connecter
 if(isset($_GET['p'])&&$_GET['p']=="connect"){

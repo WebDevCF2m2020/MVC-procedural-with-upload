@@ -26,7 +26,16 @@ Pour lancer le projet, vous devez impérativement partir du dossier public et ut
     /public/index.php
     
 ## Connexion en tant qu'administrateur:
-
+#### En contruction !
     Login : myNameIsAdmin
     PWD : myNameIsAdmin
     
+## Connexion en tant que rédacteur/éditeur:
+#### En contruction !
+    Login : myNameIsEditor
+    PWD : myNameIsEditor
+    
+## Connexion en tant que modérateur:
+#### En contruction !
+    Login : myNameIsModerator
+    PWD : myNameIsModerator    

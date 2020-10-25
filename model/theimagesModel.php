@@ -34,7 +34,7 @@ function articles_has_theimagesInsert($c,$idarticles,$idtheimages){
 /*
  * Upload Images functions
  */
-function theimagesUpload(Array $fichier,$foldersOri, $foldersMedium,$foldersSmall) {
+function theimagesUpload(Array $fichier,$foldersOri, $foldersMedium,$foldersSmall,$widthMedium=600,$heightMedium=400,$whidthSmall=100,$heightSmall=100,$qualityMedium=90,$qualitySmall=80) {
 
     // si pas d'erreurs
     if ($fichier['error'] == 0) {
@@ -55,9 +55,9 @@ function theimagesUpload(Array $fichier,$foldersOri, $foldersMedium,$foldersSmal
                 // on essaye d'envoyer physiquement le fichier
                 if (move_uploaded_file($fichier['tmp_name'], $foldersOri . $nouveauNomFichier)) {
                     // transformation vers medium
-                    theimagesMakeResize($nouveauNomFichier,$imgWidth,$imgHeight,$extend,$foldersOri,$foldersMedium);
+                    theimagesMakeResize($nouveauNomFichier,$imgWidth,$imgHeight,$extend,$foldersOri,$foldersMedium,$widthMedium,$heightMedium,$qualityMedium);
                     // transformation vers thumb
-                    theimagesMakeThumbs($nouveauNomFichier,$imgWidth,$imgHeight,$extend,$foldersOri,$foldersSmall);
+                    theimagesMakeThumbs($nouveauNomFichier,$imgWidth,$imgHeight,$extend,$foldersOri,$foldersSmall,$whidthSmall,$heightSmall,$qualitySmall);
                     // envoi le tableau avec le nom sous forme de tableau
                     return [$nouveauNomFichier,];
                 } else {
@@ -99,6 +99,8 @@ function theimagesNewName($extend) {
     return $sortie . "-" . $hasard . $extend;
 }
 
+
+// redimensionne l'image en gardant les proportions
 function theimagesMakeResize($name, $largeurOri, $hauteurOri, $extension, $origin, $medium,  $largeurMax=800, $hauteurMax=600, $qualityJpg=90) {
 
     // si la largeur d'origine est plus petite que la largeur maximum et idem hauteur origine/hauteur maximum
@@ -148,11 +150,10 @@ function theimagesMakeResize($name, $largeurOri, $hauteurOri, $extension, $origi
     }
 }
 
+// redimensionne l'image en coupant pour ibtenir une miniature centrée
 function theimagesMakeThumbs($name, $largeurOri, $hauteurOri, $extension, $origin, $thumb,  $largeurMax=80, $hauteurMax=80, $qualityJpg=80) {
     // création du fichier vierge aux tailles finales
     $newImg = imagecreatetruecolor($largeurMax, $hauteurMax);
-
-
 
     // calcul pour garder les proportions
     $thumb_width = $largeurMax;

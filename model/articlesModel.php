@@ -133,3 +133,113 @@ function updateArticle($db,$datas,$id){
 
 
 }
+// mettre la date du format datetime vers un format français
+// Argument, un datetime : 2020-09-27 19:26:30
+// résultat de la fonction : Le dimanche 27 septembre 2020 à 19h26
+function functionDateModel($ladate){
+    $string = "le ";
+    // convert to unix time
+    $timeUnix = strtotime($ladate);
+
+    // transtypage error
+    if(!$timeUnix) return "unknow date error";
+
+    // index array with day in french 0->6 US week
+    $tab_jour = ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+
+    // day's of the week (0=>sunday, 1=>monday) 0-6
+    $string.= $tab_jour[date("w",$timeUnix)];
+
+    // day of de month 1-31
+    $string.= " ".date("d",$timeUnix);
+
+    // index array with month in french (0->11)
+    $tab_mois = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+
+    // month of de year - 1 (1->12) => -1
+    $string .= " ".$tab_mois[date("n",$timeUnix)-1];
+
+    // year ****
+    $string .= " ".date("Y",$timeUnix);
+    $string .=" à ";
+    // H : heure \h => (\ permet de ne pas interpréter le caractère qui suit: h (il va l'afficher sans interprétation), i => minutes
+    $string .= date("H\hi",$timeUnix);
+
+    return $string;
+}
+
+// fonction qui nous retourne un texte ou un mot aurait pu être coupé en supprimant le dernier espace trouvé
+function cutTheTextModel($text){
+    // longueur du texte reçu
+    $textLength = strlen($text);
+    // on trouve le dernier espace dans ce $text
+    $positionLastSpace = strrpos($text, " ");
+    // on coupe la chaine avec ce dernier caractère
+    $final = substr($text, 0,$positionLastSpace);
+    return $final;
+}
+
+/*
+ * Utilisation :
+ * @return String
+ * @return error Empty'String
+ * @params paginationModel(
+ *      INT $nb_tot_item, // total's number of item
+ *      INT $current_page, // current page (?pg=3)
+ *      [INT]$nb_per_page=10, // numbers of item per page
+ *      [STRING]$URL_VAR="", // other get's variables before pagination
+ *      [STRING]$name_get_pagination="pg" // name of GET's variable for pagination
+ * ): string
+ */
+function paginationModel($nb_tot_item,$current_page,$nb_per_page=10,$URL_VAR="",$name_get_pagination="pg"){
+
+    // création de la variable de sortie
+    $sortie="";
+
+    // pour obtenir le nombre total de page, on divise le nombre total d'éléments affichables $nb_tot_item par le nombre d'éléments affichables par page, le tout arrondit à l'entier supérieur ceil()
+    $nb_pages = ceil($nb_tot_item/$nb_per_page);
+
+    // si on a qu'une seule page
+    if($nb_pages<2){
+        // on affiche une chaîne vide
+        return $sortie;
+    }
+
+    $sortie.= "Page ";
+
+    for($i=1;$i<=$nb_pages;$i++){
+        // si on est sur la première page
+        if($i==1){
+            // si la première page est la page actuelle
+            if($i==$current_page){
+                $sortie .= "<< < ";
+                // la première page n'est pas la page actuelle
+            }else{
+                // retour à la première ligne
+                $sortie .= "<a href='?$URL_VAR&$name_get_pagination=$i'><<</a> ";
+                // une page en arrière
+                $sortie .= "<a href='?$URL_VAR&$name_get_pagination=".($current_page-1)."'><</a> ";
+            }
+        }
+        // si on est sur la page actuelle, pas besoin de lien, sinon on en met un
+        $sortie .= ($i==$current_page)
+            ? "$i "
+            : "<a href='?$URL_VAR&$name_get_pagination=$i'>$i</a> ";
+
+        // si on est sur la dernière page
+        if($nb_pages==$i){
+            // si la page actuelle est la dernière page
+            if($current_page==$i){
+                $sortie.=" > >> ";
+            }else{
+                // page suivante
+                $sortie.="<a href='?$URL_VAR&$name_get_pagination=".($current_page+1)."'>></a> ";
+                // dernière page
+                $sortie.="<a href='?$URL_VAR&$name_get_pagination=$i'>>></a> ";
+            }
+        }
+
+
+    }
+    return $sortie;
+}
