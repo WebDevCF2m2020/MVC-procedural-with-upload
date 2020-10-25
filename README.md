@@ -1,5 +1,7 @@
 # MVC-procedural-with-upload
+
 Ce site est un exemple de **MVC en PHP/MySQL** procédural d'une **administration** avec **Upload d'images redimensionnées** , en partant du dossier vu au cours se trouvant à cette adresse:
+
 
 https://github.com/WebDevCF2m2020/revision-php-post-confinement/tree/master/07-crud-articles3
 
@@ -18,3 +20,8 @@ Les fonctions non liées à la base de données sont également créées dans le
 - Installez la DB : datas/structure-donnees-mvc_proc_upload.sql
 - Renommez en local le fichier config.php.local en config.php
 
+## Contrôleur frontal
+Pour lancer le projet, vous devez impérativement partir du dossier public :
+    
+    /public/index.php
+    
