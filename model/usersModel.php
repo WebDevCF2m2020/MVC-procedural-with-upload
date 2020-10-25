@@ -20,6 +20,24 @@ function connectUser($connect,$login,$pwd){
 
 }
 
+// disconnect user
+function disconnectModel(){
+    // Destroy session's variables
+    $_SESSION = array();
+
+    // Destroy the cookie
+    if (ini_get("session.use_cookies")) {
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]
+        );
+    }
+
+    // Destroy real session
+    session_destroy();
+}
+
 // find all user (Rédacteur and administateur)
 function AllUser($c){
     $sql="SELECT idusers, users_name FROM users ORDER BY users_name ASC;";

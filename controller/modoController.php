@@ -14,4 +14,4 @@ if(isset($_GET['p'])&&$_GET['p']=="disconnect"){
 
 
 // Default View
-require_once "../view/redac/redacIndexView.php";;
+require_once "../view/modo/modoIndexView.php";;

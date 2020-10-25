@@ -2,10 +2,8 @@
 // Dependencies
 require_once "../model/articlesModel.php";
 require_once "../model/usersModel.php";
-require_once "../model/functionDateModel.php";
-require_once "../model/cutTheTextModel.php";
-// Pagination
-require_once "../model/paginationModel.php";
+require_once "../model/theimagesModel.php";
+
 
 // si on essaye de se connecter
 if(isset($_GET['p'])&&$_GET['p']=="connect"){
@@ -40,7 +38,7 @@ if(isset($_GET['p'])&&$_GET['p']=="connect"){
 
     //var_dump($_POST);
     // view
-    require_once "../view/connectView.php";
+    require_once "../view/public/connectView.php";
     exit();
 }
 
@@ -62,7 +60,7 @@ if(isset($_GET["detailArticle"])){
     }
 
     // view
-    require_once "../view/detailArticleView.php";
+    require_once "../view/public/detailArticleView.php";
     exit();
 
 }
@@ -97,4 +95,4 @@ if(!$recupPagination){
 }
 
 // view
-require_once "../view/indexView.php";
+require_once "../view/public/indexView.php";

@@ -2,11 +2,9 @@
 // Dependencies
 require_once "../model/articlesModel.php";
 require_once "../model/usersModel.php";
-require_once "../model/functionDateModel.php";
-require_once "../model/cutTheTextModel.php";
-require_once "../model/paginationModel.php";
-// disconnect
-require_once "../model/disconnectModel.php";
+require_once "../model/theimagesModel.php";
+
+
 
 // on veut se déconnecter
 if(isset($_GET['p'])&&$_GET['p']=="disconnect"){
@@ -55,9 +53,24 @@ if(isset($_GET['p'])&&$_GET['p']=="create"){
         if(empty($titre)||empty($texte)||empty($idusers)){
             $erreur = "Format des champs non valides";
         }else{
-            // insertion d'article
+            // insertion d'article avec récupération de son id
             $insert = insertArticle($db,$titre,$texte,$idusers);
+
+            // insertion réussie (un id et pas 0)
             if($insert){
+                // si on veut y ajouter une image
+                if(!empty($_FILES['theimages_name'])){
+                    $upload = theimagesUpload($_FILES['theimages_name'],IMG_UPLOAD_ORIGINAL,IMG_UPLOAD_MEDIUM,IMG_UPLOAD_SMALL,IMG_MEDIUM_WIDTH,IMG_MEDIUM_HEIGHT,IMG_SMALL_WIDTH,IMG_SMALL_HEIGHT,IMG_JPG_MEDIUM,IMG_JPG_SMALL);
+
+                    // l'image a bien été envoyée
+                    if(is_array($upload)){
+                        // on insert l'image (et on récupère l'id de l'image)
+                        $idtheimages = theimagesInsert($db,$_POST['theimages_title'],$upload[0],$insert);
+
+                    }else{
+                        $error = $upload;
+                    }
+                }
                 header("Location: ./");
                 exit;
             }else{
@@ -122,10 +135,20 @@ if(isset($_GET['p'])&&$_GET['p']=="delete"){
 
 if(isset($_GET['p'])&&$_GET['p']=="update"){
 
+
     // si la variable d'id existe et est une chaîne de caractère ne contenant qu'un entier positif non signé
     if(isset($_GET['id'])&&ctype_digit($_GET['id'])){
         // conversion en numérique entier
         $id = (int) $_GET['id'];
+
+        // si on clique pour supprimer une image
+        if(isset($_GET['delIMG'])&&ctype_digit($_GET['delIMG'])){
+            $deleteIMG = theimagesDelete($db,$_GET['delIMG'],$_GET['name'],IMG_UPLOAD_ORIGINAL,IMG_UPLOAD_MEDIUM,IMG_UPLOAD_SMALL);
+
+            header("Location: ?p=update&id=$id");
+            exit();
+        }
+
 
         // si le formualire est envoyé
         if(isset($_POST['users_idusers'])){
@@ -134,7 +157,20 @@ if(isset($_GET['p'])&&$_GET['p']=="update"){
             $update = updateArticle($db,$_POST,$id);
 
             // si l'update a eu lieue
-            if($update===true){
+            if($update){
+                // si on veut y ajouter une image
+                if(!empty($_FILES['theimages_name'])){
+                    $upload = theimagesUpload($_FILES['theimages_name'],IMG_UPLOAD_ORIGINAL,IMG_UPLOAD_MEDIUM,IMG_UPLOAD_SMALL,IMG_MEDIUM_WIDTH,IMG_MEDIUM_HEIGHT,IMG_SMALL_WIDTH,IMG_SMALL_HEIGHT,IMG_JPG_MEDIUM,IMG_JPG_SMALL);
+
+                    // l'image a bien été envoyée
+                    if(is_array($upload)){
+                        // on insert l'image (et on récupère l'id de l'image)
+                        $idtheimages = theimagesInsert($db,$_POST['theimages_title'],$upload[0],$update);
+
+                    }else{
+                        $error = $upload;
+                    }
+                }
                 header("Location: ./?detailArticle=$id");
                 exit();
             }

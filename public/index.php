@@ -33,6 +33,11 @@ if(isset($_SESSION['identifiant'])&&$_SESSION['identifiant']==session_id()){
         require_once "../controller/redacController.php";
         exit();
     }
+    // if we are moderator
+    if($_SESSION['idpermissions']==3){
+        require_once "../controller/modoController.php";
+        exit();
+    }
 
 
 }
