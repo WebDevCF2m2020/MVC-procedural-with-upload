@@ -76,10 +76,8 @@ if(isset($_GET['p'])&&$_GET['p']=="create"){
                         $error = $upload;
                     }
                 }
-                /*
                 header("Location: ./");
                 exit;
-                */
             }else{
 
                 $erreur ="Problème lors de l'insertion";
