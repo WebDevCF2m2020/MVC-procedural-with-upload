@@ -55,7 +55,21 @@
                     // tant que nous avons des articles
                     foreach ($recupPagination as $item):
                         ?>
-                        <h3><?= $item["articles_title"] ?></h3>
+                        <h3><?= $item["articles_title"] ?></h3><p>
+                        <?php
+                        if(!empty($item["theimages_name"])):
+                            $arrayImgName = explode("|||", $item["theimages_name"]);
+                            $arrayImgTitle = explode("|||", $item["theimages_title"]);
+                            $i=0;
+                            foreach($arrayImgName AS $img):
+                                ?>
+                                <img src="<?=IMG_UPLOAD_SMALL.$img?>" alt="<?=$arrayImgTitle[$i]?>"/>
+                                <?php
+                                $i++;
+                            endforeach;
+                        endif;
+                        ?>
+                    </p>
                         <p>Actions : <a href="?p=update&id=<?= $item["idarticles"] ?>"
                                         title="Mettre à jour l'article"><img src="img/update.png" alt="update"/></a>
                             <a href="?p=delete&id=<?= $item["idarticles"] ?>" title="Supprimer l'article"><img

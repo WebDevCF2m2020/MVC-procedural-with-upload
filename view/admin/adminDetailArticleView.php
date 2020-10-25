@@ -48,6 +48,21 @@
                 else:
                     ?>
                     <h3>Notre article : <?= $recup['articles_title'] ?></h3>
+                    <p>
+                        <?php
+                        if(!empty($recup["theimages_name"])):
+                            $arrayImgName = explode("|||", $recup["theimages_name"]);
+                            $arrayImgTitle = explode("|||", $recup["theimages_title"]);
+                            $i=0;
+                            foreach($arrayImgName AS $img):
+                                ?>
+                                <a href="<?=IMG_UPLOAD_MEDIUM.$img?>" target="_blank" title="<?=$arrayImgTitle[$i]?>"><img src="<?=IMG_UPLOAD_SMALL.$img?>" alt="<?=$arrayImgTitle[$i]?>"/></a>
+                                <?php
+                                $i++;
+                            endforeach;
+                        endif;
+                        ?>
+                    </p>
                     <p class="lead"><a href="./">Retournez à l'accueil de l'admin</a></p>
                     <p>Actions : <a href="?p=update&id=<?= $recup["idarticles"] ?>" title="Mettre à jour l'article"><img
                                     src="img/update.png" alt="update"/></a>
