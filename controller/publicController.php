@@ -40,7 +40,7 @@ if(isset($_GET['p'])&&$_GET['p']=="connect"){
 
     //var_dump($_POST);
     // view
-    require_once "../view/connectView.php";
+    require_once "../view/public/connectView.php";
     exit();
 }
 
@@ -62,7 +62,7 @@ if(isset($_GET["detailArticle"])){
     }
 
     // view
-    require_once "../view/detailArticleView.php";
+    require_once "../view/public/detailArticleView.php";
     exit();
 
 }
@@ -97,4 +97,4 @@ if(!$recupPagination){
 }
 
 // view
-require_once "../view/indexView.php";
+require_once "../view/public/indexView.php";
