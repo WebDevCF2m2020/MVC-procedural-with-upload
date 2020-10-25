@@ -39,7 +39,8 @@ LIMIT $begin, $nbperpage;";
 // LOAD full article, users and images (optionnal) with it's ID
 function articleLoadFull($connect,$id){
     $id = (int) $id;
-    $req = "SELECT * FROM articles a 
+    $req = "SELECT a.idarticles, a.articles_title, a.articles_text,300, a.articles_date, u.idusers, u.users_name , GROUP_CONCAT(t.theimages_title SEPARATOR '|||') AS theimages_title, GROUP_CONCAT(t.theimages_name SEPARATOR '|||') AS theimages_name 
+    FROM articles a 
 	INNER JOIN users u 
 		ON a.users_idusers = u.idusers
     LEFT JOIN  articles_has_theimages hi 

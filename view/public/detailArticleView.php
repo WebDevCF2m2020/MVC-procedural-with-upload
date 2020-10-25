@@ -44,6 +44,21 @@
                     ?>
                     <h1>Notre article : <?= $recup['articles_title'] ?></h1>
                     <p class="lead"><a href="./">Retournez à l'accueil</a></p>
+                    <p>
+                        <?php
+                        if(!empty($recup["theimages_name"])):
+                            $arrayImgName = explode("|||", $recup["theimages_name"]);
+                            $arrayImgTitle = explode("|||", $recup["theimages_title"]);
+                            $i=0;
+                            foreach($arrayImgName AS $img):
+                                ?>
+                                <a href="<?=IMG_UPLOAD_MEDIUM.$img?>" target="_blank" title="<?=$arrayImgTitle[$i]?>"><img src="<?=IMG_UPLOAD_SMALL.$img?>" alt="<?=$arrayImgTitle[$i]?>"/></a>
+                                <?php
+                                $i++;
+                            endforeach;
+                        endif;
+                        ?>
+                    </p>
                     <p><?= nl2br($recup["articles_text"]) ?></p>
                     <h5>Par <?= $recup["users_name"] ?> <?= functionDateModel($recup["articles_date"]) ?></h5>
                     <hr>

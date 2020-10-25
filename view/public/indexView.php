@@ -49,8 +49,21 @@
                     // tant que nous avons des articles
                     foreach ($recupPagination as $item):
                         ?>
-                        <h4><?= $item["articles_title"] ?></h4>
-                        <p><?= cutTheTextModel($item["articles_text"]) ?> ... <a
+                        <h4><?= $item["articles_title"] ?></h4><p>
+                        <?php
+                        if(!empty($item["theimages_name"])):
+                            $arrayImgName = explode("|||", $item["theimages_name"]);
+                            $arrayImgTitle = explode("|||", $item["theimages_title"]);
+                            $i=0;
+                            foreach($arrayImgName AS $img):
+                        ?>
+                        <img src="<?=IMG_UPLOAD_SMALL.$img?>" alt="<?=$arrayImgTitle[$i]?>"/>
+                        <?php
+                            $i++;
+                            endforeach;
+                        endif;
+                        ?>
+                        </p><p><?= cutTheTextModel($item["articles_text"]) ?> ... <a
                                     href="?detailArticle=<?= $item["idarticles"] ?>">Lire la suite</a></p>
                         <h5>Par <?= $item["users_name"] ?> <?= functionDateModel($item["articles_date"]) ?></h5>
                         <hr>
