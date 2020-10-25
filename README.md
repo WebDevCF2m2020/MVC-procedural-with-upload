@@ -1,18 +1,18 @@
 # MVC-procedural-with-upload
 
-Ce site est un exemple de **MVC en PHP/MySQL** procédural d'une **administration** avec **Upload d'images redimensionnées** , en partant du dossier vu au cours se trouvant à cette adresse:
+Ce site est un exemple de **MVC en PHP/MySQL procédural** d'une **administration** avec **Upload d'images redimensionnées** , en partant du dossier vu au cours se trouvant à cette adresse:
 
 
 https://github.com/WebDevCF2m2020/revision-php-post-confinement/tree/master/07-crud-articles3
 
-Il peut servir d'exemple pour les web developers 2020 du CF2m pour leur projet "Catalogue". Il sera ensuite converti en OO (orienté objet) sur une autre adresse de Github, comme exemple d'un site MVC/OO
+Il peut servir d'exemple pour les web developers 2020 du CF2m pour leur projet "Catalogue". Il sera ensuite converti en OO (orienté objet) sur une autre adresse de Github, comme exemple d'un site MVC/OO.
 
 ## Principe MVC
 Le MVC choisit pour cet exemple est structuré tel que sur cette image:
 
 ![MVC](https://github.com/mikhawa/MVC-procedural-with-upload/raw/main/datas/MVC.png "MVC")
 
-Les fonctions non liées à la base de données sont également créées dans les modèles
+Les fonctions non liées à la base de données sont également créées dans les modèles.
 
 
 
@@ -24,4 +24,9 @@ Les fonctions non liées à la base de données sont également créées dans le
 Pour lancer le projet, vous devez impérativement partir du dossier public :
     
     /public/index.php
+    
+## Connexion en tant qu'administrateur:
+
+    Login : myNameIsAdmin
+    PWD : myNameIsAdmin
     
