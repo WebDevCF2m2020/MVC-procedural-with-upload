@@ -34,7 +34,7 @@ function articles_has_theimagesInsert($c,$idarticles,$idtheimages){
 /*
  * Upload Images functions
  */
-function theimagesUpload(Array $fichier,$folders) {
+function theimagesUpload(Array $fichier,$foldersOri, $foldersMedium,$foldersSmall) {
 
     // si pas d'erreurs
     if ($fichier['error'] == 0) {
@@ -53,11 +53,11 @@ function theimagesUpload(Array $fichier,$folders) {
                 // création du nouveau nom de fichier
                 $nouveauNomFichier = theimagesNewName($extend);
                 // on essaye d'envoyer physiquement le fichier
-                if (move_uploaded_file($fichier['tmp_name'], $folders . $nouveauNomFichier)) {
+                if (move_uploaded_file($fichier['tmp_name'], $foldersOri . $nouveauNomFichier)) {
                     // transformation vers medium
-                    theimagesMakeResize($nouveauNomFichier,$imgWidth,$imgHeight,$extend,IMG_UPLOAD_ORIGINAL,IMG_UPLOAD_MEDIUM);
+                    theimagesMakeResize($nouveauNomFichier,$imgWidth,$imgHeight,$extend,$foldersOri,$foldersMedium);
                     // transformation vers thumb
-                    theimagesMakeThumbs($nouveauNomFichier,$imgWidth,$imgHeight,$extend,IMG_UPLOAD_ORIGINAL,IMG_UPLOAD_SMALL);
+                    theimagesMakeThumbs($nouveauNomFichier,$imgWidth,$imgHeight,$extend,$foldersOri,$foldersSmall);
                     // envoi le tableau avec le nom sous forme de tableau
                     return [$nouveauNomFichier,];
                 } else {

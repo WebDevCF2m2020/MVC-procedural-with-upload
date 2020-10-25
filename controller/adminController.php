@@ -64,14 +64,13 @@ if(isset($_GET['p'])&&$_GET['p']=="create"){
             if($insert){
                 // si on veut y ajouter une image
                 if(!empty($_FILES['theimages_name'])){
-                    $upload = theimagesUpload($_FILES['theimages_name'],IMG_UPLOAD_ORIGINAL);
+                    $upload = theimagesUpload($_FILES['theimages_name'],IMG_UPLOAD_ORIGINAL,IMG_UPLOAD_MEDIUM,IMG_UPLOAD_SMALL);
 
                     // l'image a bien été envoyée
                     if(is_array($upload)){
                         // on insert l'image (et on récupère l'id de l'image)
                         $idtheimages = theimagesInsert($db,$_POST['theimages_title'],$upload[0],$insert);
-
-
+                        
                     }else{
                         $error = $upload;
                     }
