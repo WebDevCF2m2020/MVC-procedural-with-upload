@@ -1,36 +1,5 @@
 <?php
-// Load all articles with author
-function articlesLoadAll($cdb){
-    $req = "SELECT * FROM articles a 
-	INNER JOIN users u 
-		ON a.users_idusers = u.idusers
-ORDER BY a.articles_date DESC;";
-    $recup = mysqli_query($cdb,$req);
-    // si au moins 1 résultat
-    if(mysqli_num_rows($recup)){
-        // on utilise le fetch all car il peut y avoir plus d'un résultat
-        return mysqli_fetch_all($recup,MYSQLI_ASSOC);
-    }
-    // no result
-    return false;
-}
 
-// Load all articles with author but with 300 caracters from "texte"
-function articlesLoadAllResume($cdb){
-    $req = "SELECT a.idarticles, a.articles_title, LEFT(a.articles_text,300) AS articles_text, a.articles_date, u.idusers, u.users_name 
-FROM articles a 
-	INNER JOIN users u 
-		ON a.users_idusers = u.idusers
-ORDER BY a.articles_date DESC;";
-    $recup = mysqli_query($cdb,$req);
-    // si au moins 1 résultat
-    if(mysqli_num_rows($recup)){
-        // on utilise le fetch all car il peut y avoir plus d'un résultat
-        return mysqli_fetch_all($recup,MYSQLI_ASSOC);
-    }
-    // no result
-    return false;
-}
 
 // Count number of articles
 function countAllArticles($c){
@@ -42,14 +11,19 @@ FROM articles";
     return $out["nb"];
 }
 
-// Load all articles with author but with 300 caracters from "texte" with pagination LIMIT
+// Load all articles with author and images (optionnal) but with 300 caracters from "texte" with pagination LIMIT
 function articlesLoadResumePagination($cdb,$begin,$nbperpage=10){
     $begin = (int) $begin;
     $nbperpage = (int) $nbperpage;
-    $req = "SELECT a.idarticles, a.articles_title, LEFT(a.articles_text,300) AS articles_text, a.articles_date, u.idusers, u.users_name 
+    $req = "SELECT a.idarticles, a.articles_title, LEFT(a.articles_text,300) AS articles_text, a.articles_date, u.idusers, u.users_name , GROUP_CONCAT(t.theimages_title SEPARATOR '|||') AS theimages_title, GROUP_CONCAT(t.theimages_name SEPARATOR '|||') AS theimages_name
 FROM articles a 
 	INNER JOIN users u 
 		ON a.users_idusers = u.idusers
+    LEFT JOIN  articles_has_theimages hi 
+        ON hi.articles_idarticles = a.idarticles
+    LEFT JOIN theimages t 
+        ON t.idtheimages = hi.theimages_idtheimages
+GROUP BY a.idarticles
 ORDER BY a.articles_date DESC 
 LIMIT $begin, $nbperpage;";
     $recup = mysqli_query($cdb,$req);
@@ -62,13 +36,19 @@ LIMIT $begin, $nbperpage;";
     return false;
 }
 
-// LOAD full article with ID
+// LOAD full article, users and images (optionnal) with it's ID
 function articleLoadFull($connect,$id){
     $id = (int) $id;
     $req = "SELECT * FROM articles a 
 	INNER JOIN users u 
 		ON a.users_idusers = u.idusers
-    WHERE a.idarticles=$id";
+    LEFT JOIN  articles_has_theimages hi 
+        ON hi.articles_idarticles = a.idarticles
+    LEFT JOIN theimages t 
+        ON t.idtheimages = hi.theimages_idtheimages
+WHERE a.idarticles=$id
+GROUP BY a.idarticles
+    ";
     $recup = mysqli_query($connect,$req);
     // si on a 1 résultat
     if(mysqli_num_rows($recup)){

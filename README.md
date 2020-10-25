@@ -31,11 +31,11 @@ Pour lancer le projet, vous devez impérativement partir du dossier public et ut
     PWD : myNameIsAdmin
     
 ## Connexion en tant que rédacteur/éditeur:
-#### En contruction !
+#### A construire !
     Login : myNameIsEditor
     PWD : myNameIsEditor
     
 ## Connexion en tant que modérateur:
-#### En contruction !
+#### A construire !
     Login : myNameIsModerator
     PWD : myNameIsModerator    
