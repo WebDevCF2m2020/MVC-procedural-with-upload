@@ -17,3 +17,6 @@ define("IMG_UPLOAD_SMALL","img/upload/thumb");
 
 // Accepted image's formats
 define("IMG_FORMAT",[".jpg", ".jpeg", ".gif", ".png"]);
+
+// Maximum size for image
+define("IMG_MAX_SIZE",100000000); // +- 100 mio
