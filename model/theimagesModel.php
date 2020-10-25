@@ -31,6 +31,23 @@ function articles_has_theimagesInsert($c,$idarticles,$idtheimages){
     }
 }
 
+// DELETE INTO theimages (the action off FK on DELETE articles_has_theimages is CASCADE) (and required deleteRealImages)
+function theimagesDelete($c,$idtheimages,$theimages_name,$foldersOri, $foldersMedium,$foldersSmall){
+    $idtheimages = (int) $idtheimages;
+    $theimages_name = htmlentities(strip_tags(trim($theimages_name)),ENT_QUOTES);
+    if(!empty($idtheimages)&&!empty($theimages_name)){
+        // suppression de la DB
+        $sql = "DELETE FROM theimages WHERE idtheimages=$idtheimages AND theimages_name='$theimages_name';";
+        $req = mysqli_query($c,$sql) or die(mysqli_error($c));
+        // suppression physique
+        unlink($foldersOri.$theimages_name);
+        unlink($foldersMedium.$theimages_name);
+        unlink($foldersSmall.$theimages_name);
+
+        return ($req)? true : false;
+    }
+}
+
 /*
  * Upload Images functions
  */

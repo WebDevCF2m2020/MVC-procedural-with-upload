@@ -17,7 +17,7 @@ Les fonctions non liées à la base de données sont également créées dans le
 
 
 ## Pour commencer
-- Installez la DB : datas/structure-donnees-mvc_proc_upload.sql
+- Installez la DB : datas/structure-donnees-mvc_proc_upload.sql (désacitvé les clefs étrangères à l'importation)
 - Renommez en local le fichier config.php.local en config.php
 
 ## Contrôleur frontal

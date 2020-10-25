@@ -135,10 +135,20 @@ if(isset($_GET['p'])&&$_GET['p']=="delete"){
 
 if(isset($_GET['p'])&&$_GET['p']=="update"){
 
+
     // si la variable d'id existe et est une chaîne de caractère ne contenant qu'un entier positif non signé
     if(isset($_GET['id'])&&ctype_digit($_GET['id'])){
         // conversion en numérique entier
         $id = (int) $_GET['id'];
+
+        // si on clique pour supprimer une image
+        if(isset($_GET['delIMG'])&&ctype_digit($_GET['delIMG'])){
+            $deleteIMG = theimagesDelete($db,$_GET['delIMG'],$_GET['name'],IMG_UPLOAD_ORIGINAL,IMG_UPLOAD_MEDIUM,IMG_UPLOAD_SMALL);
+
+            header("Location: ?p=update&id=$id");
+            exit();
+        }
+
 
         // si le formualire est envoyé
         if(isset($_POST['users_idusers'])){

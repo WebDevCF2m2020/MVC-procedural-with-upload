@@ -59,10 +59,11 @@
                         echo "<h3>Supprimer une photo liée à l'article</h3><p class=\"lead\">En cliquant simplement dessus</p>";
                         $arrayImgName = explode("|||", $recupArticle["theimages_name"]);
                         $arrayImgTitle = explode("|||", $recupArticle["theimages_title"]);
+                        $arrayImgID = explode(",", $recupArticle["idtheimages"]);
                         $i=0;
                         foreach($arrayImgName AS $img):
                             ?>
-                            <a href="" target="_blank" title="DELETE"><img src="<?=IMG_UPLOAD_SMALL.$img?>" alt="<?=$arrayImgTitle[$i]?>"/></a>
+                            <a href="?p=update&id=<?= $recupArticle['idarticles'] ?>&delIMG=<?=$arrayImgID[$i]?>&name=<?=$img?>"  title="DELETE"><img src="<?=IMG_UPLOAD_SMALL.$img?>" alt="<?=$arrayImgTitle[$i]?>"/></a>
                             <?php
                             $i++;
                         endforeach;
