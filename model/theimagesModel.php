@@ -34,7 +34,8 @@ function articles_has_theimagesInsert($c,$idarticles,$idtheimages){
 /*
  * Upload Images functions
  */
-function theimagesUpload(Array $fichier) {
+function theimagesUpload(Array $fichier,$folders) {
+
     // si pas d'erreurs
     if ($fichier['error'] == 0) {
         // on prend l'extension
@@ -45,11 +46,20 @@ function theimagesUpload(Array $fichier) {
             $taille = theimagesVerifSize($fichier['size']);
             // si le fichier n'est pas trop grand
             if ($taille) {
+                // on récupère largeur et hauteur
+                $imgInfo = getimagesize($fichier['tmp_name']);
+                $imgWidth = $imgInfo[0];
+                $imgHeight = $imgInfo[1];
                 // création du nouveau nom de fichier
                 $nouveauNomFichier = theimagesNewName($extend);
                 // on essaye d'envoyer physiquement le fichier
-                if (move_uploaded_file($fichier['tmp_name'], IMG_UPLOAD_ORIGINAL . $nouveauNomFichier)) {
-                    return [$nouveauNomFichier];
+                if (move_uploaded_file($fichier['tmp_name'], $folders . $nouveauNomFichier)) {
+                    // transformation vers medium
+                    theimagesMakeResize($nouveauNomFichier,$imgWidth,$imgHeight,$extend,IMG_UPLOAD_ORIGINAL,IMG_UPLOAD_MEDIUM);
+                    // transformation vers thumb
+                    theimagesMakeThumbs($nouveauNomFichier,$imgWidth,$imgHeight,$extend,IMG_UPLOAD_ORIGINAL,IMG_UPLOAD_SMALL);
+                    // envoi le tableau avec le nom sous forme de tableau
+                    return [$nouveauNomFichier,];
                 } else {
                     return "Erreur inconnue lors du transfert";
                 }
@@ -88,8 +98,8 @@ function theimagesNewName($extend) {
     $hasard = mt_rand(10000, 99999);
     return $sortie . "-" . $hasard . $extend;
 }
-/*
-function theimagesMakeResize($largeurOri, $hauteurOri, $largeurMax, $hauteurMax, $qualityJpg) {
+
+function theimagesMakeResize($name, $largeurOri, $hauteurOri, $extension, $origin, $medium,  $largeurMax=800, $hauteurMax=600, $qualityJpg=90) {
 
     // si la largeur d'origine est plus petite que la largeur maximum et idem hauteur origine/hauteur maximum
     if ($largeurOri < $largeurMax && $hauteurOri < $hauteurMax) {
@@ -114,42 +124,42 @@ function theimagesMakeResize($largeurOri, $hauteurOri, $largeurMax, $hauteurMax,
     $newImg = imagecreatetruecolor($largeurFinal, $hauteurFinal);
 
     // on va copier l'image originale suivant son extension
-    if ($this->extFichier == ".jpg" || $this->extFichier == ".jpeg") {
+    if ($extension == ".jpg" || $extension == ".jpeg") {
         // en jpg
-        $copie = imagecreatefromjpeg($this->chemin . "original/" . $this->nouveauNomFichier);
+        $copie = imagecreatefromjpeg($origin . $name);
         // on adapte l'image au bon format, puis on colle
         imagecopyresampled($newImg, $copie, 0, 0, 0, 0, $largeurFinal, $hauteurFinal, $largeurOri, $hauteurOri);
         // on finalise le fichier jpg
-        imagejpeg($newImg, $this->chemin . "resize/" . $this->nouveauNomFichier, $qualityJpg);
-    } elseif ($this->extFichier == ".png") {
+        imagejpeg($newImg, $medium . $name, $qualityJpg);
+    } elseif ($extension == ".png") {
         // en png
-        $copie = imagecreatefrompng($this->chemin . "original/" . $this->nouveauNomFichier);
+        $copie = imagecreatefrompng($origin . $name);
         // on adapte l'image au bon format, puis on colle
         imagecopyresampled($newImg, $copie, 0, 0, 0, 0, $largeurFinal, $hauteurFinal, $largeurOri, $hauteurOri);
         // on finalise le fichier png
-        imagepng($newImg, $this->chemin . "resize/" . $this->nouveauNomFichier);
+        imagepng($newImg, $medium . $name);
     } else {
         // en gif
-        $copie = imagecreatefromgif($this->chemin . "original/" . $this->nouveauNomFichier);
+        $copie = imagecreatefromgif($origin . $name);
         // on adapte l'image au bon format, puis on colle
         imagecopyresampled($newImg, $copie, 0, 0, 0, 0, $largeurFinal, $hauteurFinal, $largeurOri, $hauteurOri);
         // on finalise le fichier png
-        imagegif($newImg, $this->chemin . "resize/" . $this->nouveauNomFichier);
+        imagegif($newImg, $medium . $name);
     }
 }
 
-function theimagesMakeThumbs($LO, $HO, $finalpx, $qjpg) {
+function theimagesMakeThumbs($name, $largeurOri, $hauteurOri, $extension, $origin, $thumb,  $largeurMax=80, $hauteurMax=80, $qualityJpg=80) {
     // création du fichier vierge aux tailles finales
-    $newImg = imagecreatetruecolor($finalpx, $finalpx);
+    $newImg = imagecreatetruecolor($largeurMax, $hauteurMax);
 
 
 
     // calcul pour garder les proportions
-    $thumb_width = $finalpx;
-    $thumb_height = $finalpx;
+    $thumb_width = $largeurMax;
+    $thumb_height = $hauteurMax;
 
-    $width = $LO;
-    $height = $HO;
+    $width = $largeurOri;
+    $height = $hauteurOri;
 
     $original_aspect = $width / $height;
     $thumb_aspect = $thumb_width / $thumb_height;
@@ -166,27 +176,26 @@ function theimagesMakeThumbs($LO, $HO, $finalpx, $qjpg) {
 
 
     // on va copier l'image originale suivant son extension
-    if ($this->extFichier == ".jpg" || $this->extFichier == ".jpeg") {
+    if ($extension == ".jpg" || $extension == ".jpeg") {
         // en jpg
-        $copie = imagecreatefromjpeg($this->chemin . "original/" . $this->nouveauNomFichier);
+        $copie = imagecreatefromjpeg($origin . $name);
         // on adapte l'image au bon format, puis on colle
         imagecopyresampled($newImg, $copie, 0 - ($new_width - $thumb_width) / 2, 0 - ($new_height - $thumb_height) / 2, 0, 0, $new_width, $new_height, $width, $height);
         // on finalise le fichier jpg
-        imagejpeg($newImg, $this->chemin . "thumbs/" . $this->nouveauNomFichier, $qjpg);
-    } elseif ($this->extFichier == ".png") {
+        imagejpeg($newImg, $thumb . $name, $qualityJpg);
+    } elseif ($extension == ".png") {
         // en png
-        $copie = imagecreatefrompng($this->chemin . "original/" . $this->nouveauNomFichier);
+        $copie = imagecreatefrompng($origin . $name);
         // on adapte l'image au bon format, puis on colle
         imagecopyresampled($newImg, $copie, 0 - ($new_width - $thumb_width) / 2, 0 - ($new_height - $thumb_height) / 2, 0, 0, $new_width, $new_height, $width, $height);
         // on finalise le fichier png
-        imagepng($newImg, $this->chemin . "thumbs/" . $this->nouveauNomFichier);
+        imagepng($newImg, $thumb . $name);
     } else {
         // en gif
-        $copie = imagecreatefromgif($this->chemin . "original/" . $this->nouveauNomFichier);
+        $copie = imagecreatefromgif($origin . $name);
         // on adapte l'image au bon format, puis on colle
         imagecopyresampled($newImg, $copie, 0 - ($new_width - $thumb_width) / 2, 0 - ($new_height - $thumb_height) / 2, 0, 0, $new_width, $new_height, $width, $height);
         // on finalise le fichier png
-        imagegif($newImg, $this->chemin . "thumbs/" . $this->nouveauNomFichier);
+        imagegif($newImg, $thumb . $name);
     }
 }
-*/

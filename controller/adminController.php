@@ -64,7 +64,7 @@ if(isset($_GET['p'])&&$_GET['p']=="create"){
             if($insert){
                 // si on veut y ajouter une image
                 if(!empty($_FILES['theimages_name'])){
-                    $upload = theimagesUpload($_FILES['theimages_name']);
+                    $upload = theimagesUpload($_FILES['theimages_name'],IMG_UPLOAD_ORIGINAL);
 
                     // l'image a bien été envoyée
                     if(is_array($upload)){
