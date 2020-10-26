@@ -51,16 +51,16 @@ function theimagesDelete($c,$idtheimages,$theimages_name,$foldersOri, $foldersMe
 /*
  * Upload Images functions
  */
-function theimagesUpload(Array $fichier,$foldersOri, $foldersMedium,$foldersSmall,$widthMedium=600,$heightMedium=400,$whidthSmall=100,$heightSmall=100,$qualityMedium=90,$qualitySmall=80) {
+function theimagesUpload(Array $fichier,$extension,$sizeMax,$foldersOri, $foldersMedium,$foldersSmall,$widthMedium=600,$heightMedium=400,$whidthSmall=100,$heightSmall=100,$qualityMedium=90,$qualitySmall=80) {
 
     // si pas d'erreurs
     if ($fichier['error'] == 0) {
         // on prend l'extension
-        $extend = theimagesVerifExtend($fichier['name']);
+        $extend = theimagesVerifExtend($fichier['name'],$extension);
         // si extension valide
         if ($extend) {
             // on prend la taille
-            $taille = theimagesVerifSize($fichier['size']);
+            $taille = theimagesVerifSize($fichier['size'],$sizeMax);
             // si le fichier n'est pas trop grand
             if ($taille) {
                 // on récupère largeur et hauteur
@@ -81,7 +81,7 @@ function theimagesUpload(Array $fichier,$foldersOri, $foldersMedium,$foldersSmal
                     return "Erreur inconnue lors du transfert";
                 }
             } else {
-                return "Fichier trop lourd! $taille sur " . IMG_MAX_SIZE . " autorisée!";
+                return "Fichier trop lourd! $taille sur " . $sizeMax . " autorisée!";
             }
         } else {
             return "Extension non valide";
@@ -91,19 +91,19 @@ function theimagesUpload(Array $fichier,$foldersOri, $foldersMedium,$foldersSmal
     }
 }
 
-function theimagesVerifExtend($nomOrigine) {
+function theimagesVerifExtend($nomOrigine,$format) {
     $string = strrchr($nomOrigine, "."); // on récupère l'extension avec le dernier .
     $ext = strtolower($string); // on met la chaine en minuscule
     // si l'extension est dans le tableau
-    if (in_array($ext, IMG_FORMAT)) {
+    if (in_array($ext, $format)) {
         return $ext;
     } else {
         return false;
     }
 }
 
-function theimagesVerifSize($taille) {;
-    if ($taille > IMG_MAX_SIZE) {
+function theimagesVerifSize($taille,$sizeMax) {;
+    if ($taille > $sizeMax) {
         return false;
     } else {
         return $taille;
@@ -167,7 +167,7 @@ function theimagesMakeResize($name, $largeurOri, $hauteurOri, $extension, $origi
     }
 }
 
-// redimensionne l'image en coupant pour ibtenir une miniature centrée
+// redimensionne l'image en coupant pour obtenir une miniature centrée
 function theimagesMakeThumbs($name, $largeurOri, $hauteurOri, $extension, $origin, $thumb,  $largeurMax=80, $hauteurMax=80, $qualityJpg=80) {
     // création du fichier vierge aux tailles finales
     $newImg = imagecreatetruecolor($largeurMax, $hauteurMax);

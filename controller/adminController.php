@@ -60,7 +60,7 @@ if(isset($_GET['p'])&&$_GET['p']=="create"){
             if($insert){
                 // si on veut y ajouter une image
                 if(!empty($_FILES['theimages_name'])){
-                    $upload = theimagesUpload($_FILES['theimages_name'],IMG_UPLOAD_ORIGINAL,IMG_UPLOAD_MEDIUM,IMG_UPLOAD_SMALL,IMG_MEDIUM_WIDTH,IMG_MEDIUM_HEIGHT,IMG_SMALL_WIDTH,IMG_SMALL_HEIGHT,IMG_JPG_MEDIUM,IMG_JPG_SMALL);
+                    $upload = theimagesUpload($_FILES['theimages_name'],IMG_FORMAT,IMG_MAX_SIZE,IMG_UPLOAD_ORIGINAL,IMG_UPLOAD_MEDIUM,IMG_UPLOAD_SMALL,IMG_MEDIUM_WIDTH,IMG_MEDIUM_HEIGHT,IMG_SMALL_WIDTH,IMG_SMALL_HEIGHT,IMG_JPG_MEDIUM,IMG_JPG_SMALL);
 
                     // l'image a bien été envoyée
                     if(is_array($upload)){
@@ -160,7 +160,7 @@ if(isset($_GET['p'])&&$_GET['p']=="update"){
             if($update){
                 // si on veut y ajouter une image
                 if(!empty($_FILES['theimages_name'])){
-                    $upload = theimagesUpload($_FILES['theimages_name'],IMG_UPLOAD_ORIGINAL,IMG_UPLOAD_MEDIUM,IMG_UPLOAD_SMALL,IMG_MEDIUM_WIDTH,IMG_MEDIUM_HEIGHT,IMG_SMALL_WIDTH,IMG_SMALL_HEIGHT,IMG_JPG_MEDIUM,IMG_JPG_SMALL);
+                    $upload = theimagesUpload($_FILES['theimages_name'],IMG_FORMAT,IMG_MAX_SIZE,IMG_UPLOAD_ORIGINAL,IMG_UPLOAD_MEDIUM,IMG_UPLOAD_SMALL,IMG_MEDIUM_WIDTH,IMG_MEDIUM_HEIGHT,IMG_SMALL_WIDTH,IMG_SMALL_HEIGHT,IMG_JPG_MEDIUM,IMG_JPG_SMALL);
 
                     // l'image a bien été envoyée
                     if(is_array($upload)){
