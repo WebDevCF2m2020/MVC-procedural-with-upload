@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `rubriques` (
 DROP TABLE IF EXISTS `theimages`;
 CREATE TABLE IF NOT EXISTS `theimages` (
                                            `idtheimages` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-                                           `theimages_title` varchar(150) DEFAULT NULL,
+                                           `theimages_title` varchar(400) DEFAULT NULL,
                                            `theimages_name` varchar(60) NOT NULL,
                                            PRIMARY KEY (`idtheimages`),
                                            UNIQUE KEY `theimages_name_UNIQUE` (`theimages_name`)
