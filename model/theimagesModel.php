@@ -28,6 +28,8 @@ function articles_has_theimagesInsert($c,$idarticles,$idtheimages){
         $sql = "INSERT INTO articles_has_theimages VALUES ($idarticles,$idtheimages);";
         $req = mysqli_query($c,$sql) or die(mysqli_error($c));
         return ($req)? true : false;
+    }else{
+        return false;
     }
 }
 
@@ -36,7 +38,7 @@ function theimagesDelete($c,$idtheimages,$theimages_name,$foldersOri, $foldersMe
     $idtheimages = (int) $idtheimages;
     $theimages_name = htmlentities(strip_tags(trim($theimages_name)),ENT_QUOTES);
     if(!empty($idtheimages)&&!empty($theimages_name)){
-        // suppression de la DB
+        // suppression de la DB (FK )
         $sql = "DELETE FROM theimages WHERE idtheimages=$idtheimages AND theimages_name='$theimages_name';";
         $req = mysqli_query($c,$sql) or die(mysqli_error($c));
         // suppression physique
@@ -53,7 +55,7 @@ function theimagesDelete($c,$idtheimages,$theimages_name,$foldersOri, $foldersMe
  */
 function theimagesUpload(Array $fichier,$extension,$sizeMax,$foldersOri, $foldersMedium,$foldersSmall,$widthMedium=600,$heightMedium=400,$whidthSmall=100,$heightSmall=100,$qualityMedium=90,$qualitySmall=80) {
 
-    // si pas d'erreurs
+    // si pas d'erreurs lors de l'upload
     if ($fichier['error'] == 0) {
         // on prend l'extension
         $extend = theimagesVerifExtend($fichier['name'],$extension);
@@ -65,13 +67,15 @@ function theimagesUpload(Array $fichier,$extension,$sizeMax,$foldersOri, $folder
             if ($taille) {
                 // on récupère largeur et hauteur
                 $imgInfo = getimagesize($fichier['tmp_name']);
+                // largeur en pixel de l'image d'origine
                 $imgWidth = $imgInfo[0];
+                // hauteur en pixel de l'image d'origine
                 $imgHeight = $imgInfo[1];
                 // création du nouveau nom de fichier
                 $nouveauNomFichier = theimagesNewName($extend);
                 // on essaye d'envoyer physiquement le fichier
                 if (move_uploaded_file($fichier['tmp_name'], $foldersOri . $nouveauNomFichier)) {
-                    // transformation vers medium
+                    // transformation vers medium en gardant les proportions
                     theimagesMakeResize($nouveauNomFichier,$imgWidth,$imgHeight,$extend,$foldersOri,$foldersMedium,$widthMedium,$heightMedium,$qualityMedium);
                     // transformation vers thumb
                     theimagesMakeThumbs($nouveauNomFichier,$imgWidth,$imgHeight,$extend,$foldersOri,$foldersSmall,$whidthSmall,$heightSmall,$qualitySmall);
