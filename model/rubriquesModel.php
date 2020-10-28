@@ -8,6 +8,7 @@ function recupAllRubriques($connect){
         // retourne un tableau indexé contenant des tableaux associatifs
         return mysqli_fetch_all($request,MYSQLI_ASSOC);
     }else{
-        return false;
+        // tableau vide
+        return [];
     }
 }

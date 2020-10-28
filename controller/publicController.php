@@ -3,7 +3,10 @@
 require_once "../model/articlesModel.php";
 require_once "../model/usersModel.php";
 require_once "../model/theimagesModel.php";
+require_once "../model/rubriquesModel.php";
 
+// récupération des catégories utiles pour les 3 vues
+$recAllRubriques = recupAllRubriques($db);
 
 // si on essaye de se connecter
 if(isset($_GET['p'])&&$_GET['p']=="connect"){

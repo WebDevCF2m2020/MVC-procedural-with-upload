@@ -17,10 +17,19 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav">
 
+                <?php
+                foreach($recAllRubriques AS $itemMenu):
+                ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="?rubrique=<?=$itemMenu['idrubriques']?>"><?=$itemMenu['rubriques_titre']?></a>
+                </li>
+                <?php
+                endforeach;
+                ?>
+
                 <li class="nav-item">
                     <a class="nav-link" href="?p=connect">Connexion</a>
                 </li>
-
             </ul>
 
         </div>
