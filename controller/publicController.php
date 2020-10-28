@@ -68,6 +68,16 @@ if(isset($_GET["detailArticle"])){
 
 }
 
+// Page d'accueil d'une rubrique
+
+if(isset($_GET['rubrique'])&&ctype_digit($_GET['rubrique'])){
+    // de string contenant un entier vers integer
+    $idrubriques = (int) $_GET['rubrique'];
+
+
+    exit();
+}
+
 // Page d'accueil
 
 // Mise en place de la pagination
