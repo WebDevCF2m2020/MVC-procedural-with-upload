@@ -74,6 +74,12 @@
                             endforeach;
                         endif;
                         ?>
+                        <h5><?php
+                        $cutCateg = explode("|||", $item['categ']);
+                        foreach ($cutCateg AS $categ):
+                            $separateIdAndTitle = explode ("---",$categ);
+                            echo "<a href='?rubrique={$separateIdAndTitle[0]}'>".$separateIdAndTitle[1]."</a> | ";                           endforeach;
+                        ?></h5>
                         </p><p><?= cutTheTextModel($item["articles_text"]) ?> ... <a
                                     href="?detailArticle=<?= $item["idarticles"] ?>">Lire la suite</a></p>
                         <h5>Par <?= $item["users_name"] ?> <?= functionDateModel($item["articles_date"]) ?></h5>

@@ -29,7 +29,7 @@ function recupRubriquesById($connect,$id){
 // Compte le nombre d'articles dans la rubrique/section par son ID
 function recupArticlesByIdFromRubriques($connect,$id){
     $id = (int) $id;
-    $sql="SELECT COUNT(a.idarticles) 
+    $sql="SELECT COUNT(a.idarticles) AS nb
 	FROM articles a 
     INNER JOIN articles_has_rubriques hr
 		ON hr.articles_idarticles = a.idarticles
@@ -39,10 +39,51 @@ function recupArticlesByIdFromRubriques($connect,$id){
     $request = mysqli_query($connect,$sql) or die(mysqli_error($connect));
     // si on a au moins un résultat
     if(mysqli_num_rows($request)){
-        // retourne un tableau associatif si on a 1 résultat
-        return mysqli_fetch_assoc($request);
+        // retourne un numérique avec le nombre d'articles dans une rubrique
+        return mysqli_fetch_assoc($request)['nb'];
     }else{
-        // tableau vide
-        return [];
+        // envoie 0
+        return 0;
     }
+}
+
+// Load all articles with author and images (optionnal) but with 300 caracters from "texte" with pagination LIMIT Into the rubriques selected by ID
+function articlesLoadResumePaginationByIdRubriques($cdb,$idcateg,$begin,$nbperpage=10){
+    $idcateg = (int) $idcateg;
+    $begin = (int) $begin;
+    $nbperpage = (int) $nbperpage;
+    $req = "SELECT a.idarticles, a.articles_title, LEFT(a.articles_text,300) AS articles_text, a.articles_date, u.idusers, u.users_name , 
+GROUP_CONCAT(t.theimages_title SEPARATOR '|||') AS theimages_title, GROUP_CONCAT(t.theimages_name SEPARATOR '|||') AS theimages_name,
+
+	(SELECT GROUP_CONCAT(ru.idrubriques,'---',  ru.rubriques_titre SEPARATOR '|||')  FROM rubriques ru
+		INNER JOIN articles_has_rubriques hru
+			ON hru.rubriques_idrubriques = ru.idrubriques 
+        INNER JOIN articles ar
+			ON hru.articles_idarticles = ar.idarticles 
+        WHERE ar.idarticles  = a.idarticles    
+	) AS categ	
+		
+FROM articles a 
+	INNER JOIN users u 
+		ON a.users_idusers = u.idusers
+    LEFT JOIN  articles_has_theimages hi 
+        ON hi.articles_idarticles = a.idarticles
+    LEFT JOIN theimages t 
+        ON t.idtheimages = hi.theimages_idtheimages  
+    INNER JOIN articles_has_rubriques hr
+		ON hr.articles_idarticles = a.idarticles
+	INNER JOIN rubriques r
+		ON hr.rubriques_idrubriques = r.idrubriques
+    WHERE r.idrubriques= $idcateg    
+GROUP BY a.idarticles
+ORDER BY a.articles_date DESC
+LIMIT $begin, $nbperpage;";
+    $recup = mysqli_query($cdb,$req) or die(mysqli_error($cdb));
+    // si au moins 1 résultat
+    if(@mysqli_num_rows($recup)){
+        // on utilise le fetch all car il peut y avoir plus d'un résultat
+        return mysqli_fetch_all($recup,MYSQLI_ASSOC);
+    }
+    // no result
+    return false;
 }

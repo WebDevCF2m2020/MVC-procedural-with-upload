@@ -80,6 +80,27 @@ if(isset($_GET['rubrique'])&&ctype_digit($_GET['rubrique'])){
 
     if(empty($recupRubriques)) $erreur = "Cette rubrique n'existe plus";
 
+    $nbTotalArticles = recupArticlesByIdFromRubriques($db,$idrubriques);
+
+    // existence de la variable get "pg" | toujours 1 par défaut
+    if(isset($_GET['pg'])){
+        $pgactu = (int) $_GET['pg'];
+        // si la conversion échoue ($pgactu===0)
+        if(!$pgactu) $pgactu=1;
+    }else{
+        $pgactu = 1;
+    }
+    $debut_tab = ($pgactu-1)*NUMBER_ARTICLE_PER_PAGE;
+    // requête avec le LIMIT appliqué
+    $recupPagination = articlesLoadResumePaginationByIdRubriques($db,$idrubriques,$debut_tab,NUMBER_ARTICLE_PER_PAGE);
+
+// pas d'articles
+    if(!$recupPagination){
+        $erreur = "Pas encore d'article";
+    }else {
+        // nous avons des articles, création de la pagination si nécessaire
+        $pagination = paginationModel($nbTotalArticles, $pgactu, NUMBER_ARTICLE_PER_PAGE);
+    }
     // view
     require_once "../view/public/rubriquesView.php";
     exit();
