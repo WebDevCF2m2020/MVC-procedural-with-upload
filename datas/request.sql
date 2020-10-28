@@ -49,3 +49,6 @@ FROM articles a
 		ON t.idtheimages = ht.theimages_idtheimages
 GROUP BY a.idarticles        
 ORDER BY a.articles_date DESC;
+
+# SELECT ALL FROM rubriques;
+SELECT * FROM rubriques;
