@@ -29,7 +29,13 @@ function recupRubriquesById($connect,$id){
 // Compte le nombre d'articles dans la rubrique/section par son ID
 function recupArticlesByIdFromRubriques($connect,$id){
     $id = (int) $id;
-    $sql="SELECT COUNT(idarticles) FROM articles WHERE idrubriques=$id;";
+    $sql="SELECT COUNT(a.idarticles) 
+	FROM articles a 
+    INNER JOIN articles_has_rubriques hr
+		ON hr.articles_idarticles = a.idarticles
+	INNER JOIN rubriques r
+		ON hr.rubriques_idrubriques = r.idrubriques
+    WHERE r.idrubriques=$id;";
     $request = mysqli_query($connect,$sql) or die(mysqli_error($connect));
     // si on a au moins un résultat
     if(mysqli_num_rows($request)){
