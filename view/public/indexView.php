@@ -67,6 +67,7 @@
                             foreach($arrayImgName AS $img):
                         ?>
                         <img src="<?=IMG_UPLOAD_SMALL.$img?>" alt="<?=$arrayImgTitle[$i]?>"/>
+                                <h5>ON EST ICI : categ</h5>
                         <?php
                             $i++;
                             endforeach;

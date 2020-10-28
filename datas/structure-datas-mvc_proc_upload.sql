@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le :  mer. 28 oct. 2020 à 09:34
+-- Généré le :  mer. 28 oct. 2020 à 12:29
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -67,6 +67,23 @@ CREATE TABLE IF NOT EXISTS `articles_has_rubriques` (
   KEY `fk_articles_has_rubriques_rubriques1_idx` (`rubriques_idrubriques`),
   KEY `fk_articles_has_rubriques_articles1_idx` (`articles_idarticles`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `articles_has_rubriques`
+--
+
+INSERT INTO `articles_has_rubriques` (`articles_idarticles`, `rubriques_idrubriques`) VALUES
+(2, 7),
+(37, 7),
+(39, 7),
+(40, 7),
+(40, 8),
+(44, 8),
+(37, 9),
+(40, 9),
+(41, 9),
+(1, 10),
+(40, 10);
 
 -- --------------------------------------------------------
 
@@ -150,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `rubriques` (
 
 INSERT INTO `rubriques` (`idrubriques`, `rubriques_titre`, `rubriques_text`, `rubriques_idrubriques`) VALUES
 (6, 'Belgique', 'L\'actualité en Belgique', 0),
-(7, 'Monde', 'L\'actualité dans le monde Belgique', 0),
+(7, 'Monde', 'L\'actualité dans le Monde', 0),
 (8, 'Sport', 'Tout sur le sport', 0),
 (9, 'Politique', 'Restez informé sur la politique, géopolitique etc...', 0),
 (10, 'Art', 'Tout sur l\'art', 0);
