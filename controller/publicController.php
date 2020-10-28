@@ -74,7 +74,14 @@ if(isset($_GET['rubrique'])&&ctype_digit($_GET['rubrique'])){
     // de string contenant un entier vers integer
     $idrubriques = (int) $_GET['rubrique'];
 
+    // appel des détails de la rubrique
+    $recupRubriques = recupRubriquesById($db,$idrubriques);
+    //var_dump($recupRubriques);
 
+    if(empty($recupRubriques)) $erreur = "Cette rubrique n'existe plus";
+
+    // view
+    require_once "../view/public/rubriquesView.php";
     exit();
 }
 

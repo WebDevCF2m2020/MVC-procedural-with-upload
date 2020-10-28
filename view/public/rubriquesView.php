@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Notre article : <?= (isset($erreur)) ? $erreur : $recup['articles_title'] ?></title>
+    <title>Rubrique <?=(!empty($recupRubriques))? $recupRubriques['rubriques_titre'] : "inexistante" ?></title>
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="css/custom.min.css" media="screen">
 </head>
@@ -19,17 +19,17 @@
 
                 <?php
                 foreach($recAllRubriques AS $itemMenu):
-                    ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?rubrique=<?=$itemMenu['idrubriques']?>"><?=$itemMenu['rubriques_titre']?></a>
-                    </li>
+                ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="?rubrique=<?=$itemMenu['idrubriques']?>"><?=$itemMenu['rubriques_titre']?></a>
+                </li>
                 <?php
                 endforeach;
                 ?>
+
                 <li class="nav-item">
                     <a class="nav-link" href="?p=connect">Connexion</a>
                 </li>
-
             </ul>
 
         </div>
@@ -51,29 +51,36 @@
                 <?php
                 else:
                     ?>
-                    <h1>Notre article : <?= $recup['articles_title'] ?></h1>
+                    <h1>Rubrique : <?=$recupRubriques['rubriques_titre']?></h1>
                     <p class="lead"><a href="./">Retournez à l'accueil</a></p>
-                    <p>
+                    <p class="lead">Nombre d'articles de cette rubrique : <?= $nbTotalArticles ?></p>
+                    <?php
+                    // affichage de la pagination
+                    echo $pagination;
+                    // tant que nous avons des articles
+                    foreach ($recupPagination as $item):
+                        ?>
+                        <h4><?= $item["articles_title"] ?></h4><p>
                         <?php
-                        if(!empty($recup["theimages_name"])):
-                            $arrayImgName = explode("|||", $recup["theimages_name"]);
-                            $arrayImgTitle = explode("|||", $recup["theimages_title"]);
+                        if(!empty($item["theimages_name"])):
+                            $arrayImgName = explode("|||", $item["theimages_name"]);
+                            $arrayImgTitle = explode("|||", $item["theimages_title"]);
                             $i=0;
                             foreach($arrayImgName AS $img):
-                                ?>
-                                <a href="<?=IMG_UPLOAD_MEDIUM.$img?>" target="_blank" title="<?=$arrayImgTitle[$i]?>"><img src="<?=IMG_UPLOAD_SMALL.$img?>" alt="<?=$arrayImgTitle[$i]?>"/></a>
-                                <?php
-                                $i++;
+                        ?>
+                        <img src="<?=IMG_UPLOAD_SMALL.$img?>" alt="<?=$arrayImgTitle[$i]?>"/>
+                        <?php
+                            $i++;
                             endforeach;
                         endif;
                         ?>
-                    </p>
-                    <p><?= nl2br($recup["articles_text"]) ?></p>
-                    <h5>Par <?= $recup["users_name"] ?> <?= functionDateModel($recup["articles_date"]) ?></h5>
-                    <hr>
-
-                <?php
-
+                        </p><p><?= cutTheTextModel($item["articles_text"]) ?> ... <a
+                                    href="?detailArticle=<?= $item["idarticles"] ?>">Lire la suite</a></p>
+                        <h5>Par <?= $item["users_name"] ?> <?= functionDateModel($item["articles_date"]) ?></h5>
+                        <hr>
+                    <?php
+                    endforeach;
+                    echo $pagination;
                 endif;
 
                 ?>
