@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le :  mer. 28 oct. 2020 à 12:29
--- Version du serveur :  8.0.18
+-- Généré le :  mer. 28 oct. 2020 à 18:59
+-- Version du serveur :  5.7.28
 -- Version de PHP :  7.3.12
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,14 +27,14 @@ USE `mvc_proc_upload`;
 
 DROP TABLE IF EXISTS `articles`;
 CREATE TABLE IF NOT EXISTS `articles` (
-  `idarticles` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `articles_title` varchar(150) NOT NULL,
-  `articles_text` text NOT NULL,
-  `articles_date` datetime DEFAULT CURRENT_TIMESTAMP,
-  `users_idusers` int(10) UNSIGNED DEFAULT NULL,
-  PRIMARY KEY (`idarticles`),
-  UNIQUE KEY `titre_UNIQUE` (`articles_title`),
-  KEY `fk_articles_users_idx` (`users_idusers`)
+                                          `idarticles` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+                                          `articles_title` varchar(150) NOT NULL,
+                                          `articles_text` text NOT NULL,
+                                          `articles_date` datetime DEFAULT CURRENT_TIMESTAMP,
+                                          `users_idusers` int(10) UNSIGNED DEFAULT NULL,
+                                          PRIMARY KEY (`idarticles`),
+                                          UNIQUE KEY `titre_UNIQUE` (`articles_title`),
+                                          KEY `fk_articles_users_idx` (`users_idusers`)
 ) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
 --
@@ -50,7 +50,7 @@ INSERT INTO `articles` (`idarticles`, `articles_title`, `articles_text`, `articl
 (39, 'Cette fonctionnalité rend le Nest Hub Max de Google plus pratique, mais aussi plus inquiétant', 'Google serait en train de tester une nouvelle fonctionnalité qui permet d’utiliser Google Assistant sans avoir à prononcer le mot-clé « Ok Google », grâce à un système de détection de la présence. Cela rendrait le produit plus pratique, mais pourrait également inquiéter certains utilisateurs.\r\n\r\nRécemment, lors de l’événement en ligne pour présenter le Pixel 5, Google a présenté une nouvelle enceinte connectée, le Nest Audio, qui succède au Google Home. Cette année, la firme a également apporté une série d’améliorations pour ses écrans Nest Hub, comme l’ajout de Netflix parmi les applications compatibles, ou encore le dark mode.\r\n\r\nOk Google, adieu\r\nVisiblement, Google prévoit également de lancer une fonctionnalité, pour ces écrans, qui permettra d’utiliser Google Assisant sans prononcer les mots « Ok Google ». En tout cas, c’est ce qui est suggéré par un article d’Android Central, qui relaie la chaîne YouTube de Jan Boromeusz. Récemment, celle-ci a dévoilé des fonctionnalités des écrans connectés de Google avant que ces fonctionnalités ne soient officielles.\r\n\r\nDe ce fait, les médias accordent une certaine crédibilité à ces fuites. Dans la vidéo, Jan Boromeusz utilise un écran Nest Hub Max et est en mesure de faire des requêtes pour Google Assistant, sans avoir à activer l’assistant numérique avec le mot-clé « Ok Google ».\r\n\r\nL’appareil fonctionnerait avec un firmware qui est actuellement utilisé par Google pour tester ses nouvelles fonctionnalités. Bien entendu, pour le moment, en attendant la présentation de cette nouveauté par la firme de Mountain View, la prudence reste de mise.\r\n\r\nPour le moment, nous ignorons également comment le Nest Hub Max détecte la présence de l’utilisateur pour activer l’écoute des requêtes. Il est possible que l’appareil utilise un capteur à ultrasons pour savoir si un utilisateur est à proximité. Mais il est également possible que le Nest Hub Max puisse utiliser son système de reconnaissance faciale.\r\n\r\nUn écran qui vous écouterait dès que vous êtes à proximité ?\r\nCela rend, en tout cas, les écrans connectés plus pratiques. Mais en même temps, cette nouveauté pourrait inquiéter certains utilisateurs.\r\n\r\nEn effet, actuellement, Google Assistant ne s’active que lorsqu’il est sollicité grâce au mot-clé « Ok Google ». Avec ce système de détection de présence, le Nest Hub Max écouterait donc l’utilisateur et traiterait les requêtes dès qu’il est à proximité (que celui-ci ait l’intention de demander quelque chose à l’assistant ou pas).\r\n\r\nPour le moment, nous ignorons quand Google pourrait lancer cette nouvelle fonctionnalité. Mais s’il le fait, on peut déjà supposer que la firme de Mountain View devrait donner le choix aux utilisateurs, en permettant à ceux-ci d’utiliser la détection de présence ou non.', '2020-10-26 08:25:13', 1),
 (40, 'Chili : le changement de Constitution plébiscité dans les urnes', 'Les électeurs chiliens se sont largement prononcés en faveur d&#039;une réécriture de la Constitution, selon des résultats quasi définitifs communiqués dimanche par la Commission électorale.\r\n\r\nLes Chiliens ont voté à une très forte majorité, dimanche 25 octobre, en faveur d&#039;une nouvelle Constitution pour remplacer celle héritée de l&#039;ère Pinochet, lors d&#039;un référendum organisé un an après un soulèvement populaire massif contre les inégalités sociales.\r\n\r\nSelon des résultats quasi définitifs portant sur plus de 99 % des bureaux de vote, les suffrages favorables à une nouvelle Constitution l&#039;emportaient largement avec 78,28 % des voix, contre 21,72 % pour le vote rejetant cette option. La participation s&#039;élève à environ 50 %, selon l&#039;autorité électorale. Le futur projet de Constitution sera soumis à référendum en 2022.\r\n\r\nRéagissant à ces résultats, le président conservateur Sebastian Piñera a appelé dans une allocution télévisée à &quot;l&#039;unité&quot; du pays pour rédiger la &quot;nouvelle Constitution&quot;. &quot;Jusqu&#039;à présent, la Constitution nous a divisés. À partir d&#039;aujourd&#039;hui, nous devons tous collaborer pour que la nouvelle Constitution soit un espace d&#039;unité, de stabilité et d&#039;avenir&quot;, a déclaré le chef de l&#039;État.\r\n\r\nDes dizaines de milliers de manifestants euphoriques se sont rassemblés sur plusieurs places de la capitale Santiago, dont la Plaza Italia, épicentre de la contestation, pour fêter la victoire, ont constaté des journalistes de l&#039;AFP.\r\n\r\n&quot;Nous célébrons une victoire remportée sur cette place plus digne que jamais !&quot;, s&#039;enthousiasmait Graciela Gonzalez, une vendeuse de 35 ans, au milieu des chants, des pétards et des coups de klaxon.\r\n\r\nIl y a un an jour pour jour, la contestation contre les inégalités avait connu un tournant lorsque 1,2 million de personnes s&#039;étaient rassemblées sur cette place emblématique, rebaptisée &quot;Place de la dignité&quot;.\r\n\r\n&quot;Je n&#039;ai jamais imaginé que nous, Chiliens, serions capables de nous unir pour un tel changement !&quot;, s&#039;enflammait Maria Isabel Nuñez, 46 ans, venue sur la place main dans la main avec sa fille de 20 ans.\r\n\r\n&quot;Le Chili mérite une catharsis nationale et je pense que c&#039;est le début&quot;\r\n\r\nEn raison de la pandémie de coronavirus qui a durement frappé le Chili (500 000 contaminations, 14 000 décès), les électeurs, dûment masqués, ont formé toute la journée de longues files d&#039;attente devant les centres de vote, appliquant les mesures de distanciation physique, a constaté l&#039;AFP.\r\n\r\nDe nombreux électeurs ont évoqué un scrutin &quot;historique&quot;. &quot;Le Chili mérite une catharsis nationale et je pense que c&#039;est le début&quot;, a déclaré à l&#039;AFP Felipe, un ingénieur de 35 ans.\r\n\r\nRemplacer la Constitution héritée de la dictature d&#039;Augusto Pinochet (1973-1990) était une des revendications des manifestations lancées à partir du 18 octobre 2019, afin de réclamer une société plus juste.\r\n\r\nLa loi fondamentale actuelle limite fortement l&#039;action de l&#039;État et promeut l&#039;activité privée dans tous les secteurs, notamment l&#039;éducation, la santé et les retraites.', '2020-10-26 08:30:14', 2),
 (41, 'Plus de 500 agents de police en quarantaine', '(Belga) Au 19 octobre, il y avait 557 agents de police en quarantaine, dont une bonne moitié malade du Covid-19 (282), le reste parce qu&#039;ils ont été en contact avec une personne contaminée (275), signalent lundi Het Nieuwsblad, De Standaard et Het Belang van Limburg.\r\n\r\n\r\nCependant, &quot;les chiffres ne sont que partiels et incomplets. Au cours de la semaine dernière, les quarantaines ont presque doublé&quot;, précise le porte-parole de la police fédérale. Les syndicats mettent en avant que les agents de police exercent un métier de contact et que le nouveau coronavirus les frappe tant dans les polices locales que fédérale. Ils avertissent que d&#039;ici quelques jours, les services policiers de base ne pourront plus être garantis par manque d&#039;agents. Ils plaident pour que les agents soient testés de manière prioritaire et préventive à l&#039;instar du personnel soignant. Le cabinet de la ministre des Affaires intérieures, Annelies Verlinden (CD&amp;V), abonde en ce sens. &quot;La ministre a demandé au gouvernement d&#039;administrer des tests pour le coronavirus aux agents. Nous supposons que cela sera bientôt en ordre&quot;, selon la porte-parole Sofie ­Demeyer. (Belga)', '2020-10-26 09:37:13', 1),
-(43, '&#039;(a§è', 'etyuè§yuui fguyhrè§yuj drtghytyj', '2020-10-26 14:23:29', 1),
+(43, 'Avec le coronavirus, les fleuristes aussi font grise mine', 'Dans sa boutique d&#039;un quartier huppé proche de l&#039;arc de Triomphe, Pascal Mutel feuillette son carnet de commandes. A la date du jour, les pages consacrées à deux grands hôtels parisiens sont vides. Ou presque.\r\n\r\n&quot;Un bouquet commandé, ouah!&quot; ironise le fleuriste. D&#039;ordinaire, ces établissements de luxe demandent quotidiennement des dizaines de bouquets pour fleurir les chambres. Mais leur fréquentation a chuté.\r\n\r\n&quot;Les palaces ont des taux d&#039;occupation autour de 10%... Et on ne met pas de fleurs dans des chambres vides&quot;, pointe M. Mutel, à la tête d&#039;une société de 14 salariés.\r\n\r\nIl fait ses calculs: entre les événements d&#039;entreprise annulés à la chaîne et les commandes amaigries, il estime que son chiffre d&#039;affaires sera amputé de 30% en mars et de 40% en avril. &quot;Pour l&#039;instant, on fait le dos rond. On commence à être habitués&quot;.\r\n\r\nEgalement président de la chambre syndicale des fleuristes d&#039;Ile-de-France, il rappelle que les commerces de région parisienne avaient été durement affectés par l&#039;épisode des &quot;Gilets jaunes&quot; et la paralysie des transports pendant la grève contre la réforme des retraites.  \r\n\r\nLes inquiétudes portent maintenant sur le maintien des rassemblements familiaux du printemps, mariages en tête.\r\n\r\n&quot;On a commencé à avoir des remontées faisant état d&#039;annulations ou de reports&quot;, rapporte Jean-Christophe Conrié, directeur de la Fédération française des artisans fleuristes. \r\n\r\nLes organisateurs font face à des défections d&#039;invités - soudain dans l&#039;incapacité de trouver un moyen de déplacement en raison des mesures de restrictions visant à endiguer l&#039;épidémie. Ils craignent aussi d&#039;exposer leurs proches âgés.\r\n\r\nDans ces conditions, &quot;on sent que tout le monde réduit un peu la voilure&quot;, remarque Gilles Pothier, fleuriste à Paris et président d&#039;Interflora.', '2020-10-26 14:23:29', 1),
 (44, 'Jordan 1 Retro High Dior', 'Jordan Brand connected with Parisian fashion house Dior to create history with the Jordan 1 Retro High Dior, now available on StockX. This is the first time that Jordan has collaborated with a legacy fashion label like Dior, making this release one for the books. This release was limited to only 8,500 pairs, each pair individually numbered.\r\n\r\nThis Jordan 1 Retro High is composed of a white and grey leather upper with traditional Dior monogram print Swoosh. These shoes are made in Italy with premium materials. Co-branded icy translucent soles, Dior branded tongue and Wings logo, and a silver “Air Dior” hang tag completes the design. These sneakers released in April of 2020 and retailed for $2,000.', '2020-10-26 16:01:10', 1);
 
 -- --------------------------------------------------------
@@ -61,11 +61,11 @@ INSERT INTO `articles` (`idarticles`, `articles_title`, `articles_text`, `articl
 
 DROP TABLE IF EXISTS `articles_has_rubriques`;
 CREATE TABLE IF NOT EXISTS `articles_has_rubriques` (
-  `articles_idarticles` int(10) UNSIGNED NOT NULL,
-  `rubriques_idrubriques` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`articles_idarticles`,`rubriques_idrubriques`),
-  KEY `fk_articles_has_rubriques_rubriques1_idx` (`rubriques_idrubriques`),
-  KEY `fk_articles_has_rubriques_articles1_idx` (`articles_idarticles`)
+                                                        `articles_idarticles` int(10) UNSIGNED NOT NULL,
+                                                        `rubriques_idrubriques` int(10) UNSIGNED NOT NULL,
+                                                        PRIMARY KEY (`articles_idarticles`,`rubriques_idrubriques`),
+                                                        KEY `fk_articles_has_rubriques_rubriques1_idx` (`rubriques_idrubriques`),
+                                                        KEY `fk_articles_has_rubriques_articles1_idx` (`articles_idarticles`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -73,6 +73,7 @@ CREATE TABLE IF NOT EXISTS `articles_has_rubriques` (
 --
 
 INSERT INTO `articles_has_rubriques` (`articles_idarticles`, `rubriques_idrubriques`) VALUES
+(41, 6),
 (2, 7),
 (37, 7),
 (39, 7),
@@ -83,7 +84,17 @@ INSERT INTO `articles_has_rubriques` (`articles_idarticles`, `rubriques_idrubriq
 (40, 9),
 (41, 9),
 (1, 10),
-(40, 10);
+(40, 10),
+(2, 11),
+(37, 11),
+(38, 11),
+(39, 11),
+(43, 11),
+(44, 11),
+(2, 12),
+(40, 12),
+(41, 12),
+(43, 12);
 
 -- --------------------------------------------------------
 
@@ -93,11 +104,11 @@ INSERT INTO `articles_has_rubriques` (`articles_idarticles`, `rubriques_idrubriq
 
 DROP TABLE IF EXISTS `articles_has_theimages`;
 CREATE TABLE IF NOT EXISTS `articles_has_theimages` (
-  `articles_idarticles` int(10) UNSIGNED NOT NULL,
-  `theimages_idtheimages` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`articles_idarticles`,`theimages_idtheimages`),
-  KEY `fk_articles_has_theimages_theimages1_idx` (`theimages_idtheimages`),
-  KEY `fk_articles_has_theimages_articles1_idx` (`articles_idarticles`)
+                                                        `articles_idarticles` int(10) UNSIGNED NOT NULL,
+                                                        `theimages_idtheimages` int(10) UNSIGNED NOT NULL,
+                                                        PRIMARY KEY (`articles_idarticles`,`theimages_idtheimages`),
+                                                        KEY `fk_articles_has_theimages_theimages1_idx` (`theimages_idtheimages`),
+                                                        KEY `fk_articles_has_theimages_articles1_idx` (`articles_idarticles`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -120,7 +131,8 @@ INSERT INTO `articles_has_theimages` (`articles_idarticles`, `theimages_idtheima
 (43, 34),
 (39, 35),
 (44, 36),
-(44, 37);
+(44, 37),
+(43, 40);
 
 -- --------------------------------------------------------
 
@@ -130,10 +142,10 @@ INSERT INTO `articles_has_theimages` (`articles_idarticles`, `theimages_idtheima
 
 DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE IF NOT EXISTS `permissions` (
-  `idpermissions` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `permissions_name` varchar(100) NOT NULL,
-  PRIMARY KEY (`idpermissions`),
-  UNIQUE KEY `droit_name_UNIQUE` (`permissions_name`)
+                                             `idpermissions` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+                                             `permissions_name` varchar(100) NOT NULL,
+                                             PRIMARY KEY (`idpermissions`),
+                                             UNIQUE KEY `droit_name_UNIQUE` (`permissions_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
@@ -153,13 +165,13 @@ INSERT INTO `permissions` (`idpermissions`, `permissions_name`) VALUES
 
 DROP TABLE IF EXISTS `rubriques`;
 CREATE TABLE IF NOT EXISTS `rubriques` (
-  `idrubriques` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `rubriques_titre` varchar(120) NOT NULL,
-  `rubriques_text` varchar(500) DEFAULT NULL,
-  `rubriques_idrubriques` int(10) UNSIGNED DEFAULT '0',
-  PRIMARY KEY (`idrubriques`),
-  KEY `fk_rubriques_rubriques1_idx` (`rubriques_idrubriques`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+                                           `idrubriques` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+                                           `rubriques_titre` varchar(120) NOT NULL,
+                                           `rubriques_text` varchar(500) DEFAULT NULL,
+                                           `rubriques_idrubriques` int(10) UNSIGNED DEFAULT '0',
+                                           PRIMARY KEY (`idrubriques`),
+                                           KEY `fk_rubriques_rubriques1_idx` (`rubriques_idrubriques`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `rubriques`
@@ -170,7 +182,9 @@ INSERT INTO `rubriques` (`idrubriques`, `rubriques_titre`, `rubriques_text`, `ru
 (7, 'Monde', 'L\'actualité dans le Monde', 0),
 (8, 'Sport', 'Tout sur le sport', 0),
 (9, 'Politique', 'Restez informé sur la politique, géopolitique etc...', 0),
-(10, 'Art', 'Tout sur l\'art', 0);
+(10, 'Art', 'Tout sur l\'art', 0),
+(11, 'Economie', 'Tout sur l\'économie', NULL),
+(12, 'Société', 'Actualités sur la société au sens large', NULL);
 
 -- --------------------------------------------------------
 
@@ -180,12 +194,12 @@ INSERT INTO `rubriques` (`idrubriques`, `rubriques_titre`, `rubriques_text`, `ru
 
 DROP TABLE IF EXISTS `theimages`;
 CREATE TABLE IF NOT EXISTS `theimages` (
-  `idtheimages` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `theimages_title` varchar(400) DEFAULT NULL,
-  `theimages_name` varchar(60) NOT NULL,
-  PRIMARY KEY (`idtheimages`),
-  UNIQUE KEY `theimages_name_UNIQUE` (`theimages_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+                                           `idtheimages` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+                                           `theimages_title` varchar(400) DEFAULT NULL,
+                                           `theimages_name` varchar(60) NOT NULL,
+                                           PRIMARY KEY (`idtheimages`),
+                                           UNIQUE KEY `theimages_name_UNIQUE` (`theimages_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `theimages`
@@ -207,7 +221,8 @@ INSERT INTO `theimages` (`idtheimages`, `theimages_title`, `theimages_name`) VAL
 (34, '', '20201026142329-98242.jpg'),
 (35, 'yt(u', '20201026144541-40205.jpg'),
 (36, 'Jordan 1 Retro High Dior', '20201026160110-56881.jpg'),
-(37, 'autre paire', '20201026160814-43232.jpg');
+(37, 'autre paire', '20201026160814-43232.jpg'),
+(40, 'March&eacute; aux fleurs', '20201028175333-38412.jpg');
 
 -- --------------------------------------------------------
 
@@ -217,13 +232,13 @@ INSERT INTO `theimages` (`idtheimages`, `theimages_title`, `theimages_name`) VAL
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `idusers` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `users_name` varchar(45) DEFAULT NULL,
-  `users_pwd` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'Le binaire permet au mot de passe d''être sensible à la casse (minuscule, majuscule)',
-  `permissions_idpermissions` int(10) UNSIGNED DEFAULT NULL,
-  PRIMARY KEY (`idusers`),
-  UNIQUE KEY `users_name_UNIQUE` (`users_name`),
-  KEY `fk_users_permissions_id` (`permissions_idpermissions`)
+                                       `idusers` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+                                       `users_name` varchar(45) DEFAULT NULL,
+                                       `users_pwd` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'Le binaire permet au mot de passe d''être sensible à la casse (minuscule, majuscule)',
+                                       `permissions_idpermissions` int(10) UNSIGNED DEFAULT NULL,
+                                       PRIMARY KEY (`idusers`),
+                                       UNIQUE KEY `users_name_UNIQUE` (`users_name`),
+                                       KEY `fk_users_permissions_id` (`permissions_idpermissions`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
@@ -243,32 +258,32 @@ INSERT INTO `users` (`idusers`, `users_name`, `users_pwd`, `permissions_idpermis
 -- Contraintes pour la table `articles`
 --
 ALTER TABLE `articles`
-  ADD CONSTRAINT `fk_articles_users` FOREIGN KEY (`users_idusers`) REFERENCES `users` (`idusers`);
+    ADD CONSTRAINT `fk_articles_users` FOREIGN KEY (`users_idusers`) REFERENCES `users` (`idusers`);
 
 --
 -- Contraintes pour la table `articles_has_rubriques`
 --
 ALTER TABLE `articles_has_rubriques`
-  ADD CONSTRAINT `fk_articles_has_rubriques_articles1` FOREIGN KEY (`articles_idarticles`) REFERENCES `articles` (`idarticles`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_articles_has_rubriques_rubriques1` FOREIGN KEY (`rubriques_idrubriques`) REFERENCES `rubriques` (`idrubriques`) ON DELETE CASCADE;
+    ADD CONSTRAINT `fk_articles_has_rubriques_articles1` FOREIGN KEY (`articles_idarticles`) REFERENCES `articles` (`idarticles`) ON DELETE CASCADE,
+    ADD CONSTRAINT `fk_articles_has_rubriques_rubriques1` FOREIGN KEY (`rubriques_idrubriques`) REFERENCES `rubriques` (`idrubriques`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `articles_has_theimages`
 --
 ALTER TABLE `articles_has_theimages`
-  ADD CONSTRAINT `fk_articles_has_theimages_articles1` FOREIGN KEY (`articles_idarticles`) REFERENCES `articles` (`idarticles`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_articles_has_theimages_theimages1` FOREIGN KEY (`theimages_idtheimages`) REFERENCES `theimages` (`idtheimages`) ON DELETE CASCADE;
+    ADD CONSTRAINT `fk_articles_has_theimages_articles1` FOREIGN KEY (`articles_idarticles`) REFERENCES `articles` (`idarticles`) ON DELETE CASCADE,
+    ADD CONSTRAINT `fk_articles_has_theimages_theimages1` FOREIGN KEY (`theimages_idtheimages`) REFERENCES `theimages` (`idtheimages`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `rubriques`
 --
 ALTER TABLE `rubriques`
-  ADD CONSTRAINT `fk_rubriques_rubriques1` FOREIGN KEY (`rubriques_idrubriques`) REFERENCES `rubriques` (`idrubriques`);
+    ADD CONSTRAINT `fk_rubriques_rubriques1` FOREIGN KEY (`rubriques_idrubriques`) REFERENCES `rubriques` (`idrubriques`);
 
 --
 -- Contraintes pour la table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `fk_users_permission` FOREIGN KEY (`permissions_idpermissions`) REFERENCES `permissions` (`idpermissions`);
+    ADD CONSTRAINT `fk_users_permission` FOREIGN KEY (`permissions_idpermissions`) REFERENCES `permissions` (`idpermissions`);
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
