@@ -18,11 +18,12 @@
             <ul class="navbar-nav">
 
                 <?php
-                foreach($recAllRubriques AS $itemMenu):
-                ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="?rubrique=<?=$itemMenu['idrubriques']?>"><?=$itemMenu['rubriques_titre']?></a>
-                </li>
+                foreach ($recAllRubriques as $itemMenu):
+                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="?rubrique=<?= $itemMenu['idrubriques'] ?>"><?= $itemMenu['rubriques_titre'] ?></a>
+                    </li>
                 <?php
                 endforeach;
                 ?>
@@ -60,20 +61,22 @@
                         ?>
                         <h4><?= $item["articles_title"] ?></h4><p>
                         <?php
-                        if(!empty($item["theimages_name"])):
+                        if (!empty($item["theimages_name"])):
                             $arrayImgName = explode("|||", $item["theimages_name"]);
                             $arrayImgTitle = explode("|||", $item["theimages_title"]);
-                            $i=0;
-                            foreach($arrayImgName AS $img):
-                        ?>
-                        <img src="<?=IMG_UPLOAD_SMALL.$img?>" alt="<?=$arrayImgTitle[$i]?>"/>
-                                <h5>ON EST ICI : categ</h5>
-                        <?php
-                            $i++;
+                            $i = 0;
+                            foreach ($arrayImgName as $img):
+                                ?>
+                                <img src="<?= IMG_UPLOAD_SMALL . $img ?>" alt="<?= $arrayImgTitle[$i] ?>"/>
+
+                                <?php
+                                $i++;
                             endforeach;
                         endif;
                         ?>
-                        </p><p><?= cutTheTextModel($item["articles_text"]) ?> ... <a
+                    </p>
+                        <h5>ON EST ICI : categ</h5>
+                        <p><?= cutTheTextModel($item["articles_text"]) ?> ... <a
                                     href="?detailArticle=<?= $item["idarticles"] ?>">Lire la suite</a></p>
                         <h5>Par <?= $item["users_name"] ?> <?= functionDateModel($item["articles_date"]) ?></h5>
                         <hr>

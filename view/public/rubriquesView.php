@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Rubrique <?=(!empty($recupRubriques))? $recupRubriques['rubriques_titre'] : "inexistante" ?></title>
+    <title>Rubrique <?= (!empty($recupRubriques)) ? $recupRubriques['rubriques_titre'] : "inexistante" ?></title>
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="css/custom.min.css" media="screen">
 </head>
@@ -18,11 +18,12 @@
             <ul class="navbar-nav">
 
                 <?php
-                foreach($recAllRubriques AS $itemMenu):
-                ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="?rubrique=<?=$itemMenu['idrubriques']?>"><?=$itemMenu['rubriques_titre']?></a>
-                </li>
+                foreach ($recAllRubriques as $itemMenu):
+                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="?rubrique=<?= $itemMenu['idrubriques'] ?>"><?= $itemMenu['rubriques_titre'] ?></a>
+                    </li>
                 <?php
                 endforeach;
                 ?>
@@ -51,7 +52,7 @@
                 <?php
                 else:
                     ?>
-                    <h1>Rubrique : <?=$recupRubriques['rubriques_titre']?></h1>
+                    <h1>Rubrique : <?= $recupRubriques['rubriques_titre'] ?></h1>
                     <p class="lead"><a href="./">Retournez à l'accueil</a></p>
                     <p class="lead">Nombre d'articles de cette rubrique : <?= $nbTotalArticles ?></p>
                     <?php
@@ -62,25 +63,26 @@
                         ?>
                         <h4><?= $item["articles_title"] ?></h4><p>
                         <?php
-                        if(!empty($item["theimages_name"])):
+                        if (!empty($item["theimages_name"])):
                             $arrayImgName = explode("|||", $item["theimages_name"]);
                             $arrayImgTitle = explode("|||", $item["theimages_title"]);
-                            $i=0;
-                            foreach($arrayImgName AS $img):
-                        ?>
-                        <img src="<?=IMG_UPLOAD_SMALL.$img?>" alt="<?=$arrayImgTitle[$i]?>"/>
-                        <?php
-                            $i++;
+                            $i = 0;
+                            foreach ($arrayImgName as $img):
+                                ?>
+                                <img src="<?= IMG_UPLOAD_SMALL . $img ?>" alt="<?= $arrayImgTitle[$i] ?>"/>
+                                <?php
+                                $i++;
                             endforeach;
                         endif;
                         ?>
+                    </p>
                         <h5><?php
-                        $cutCateg = explode("|||", $item['categ']);
-                        foreach ($cutCateg AS $categ):
-                            $separateIdAndTitle = explode ("---",$categ);
-                            echo "<a href='?rubrique={$separateIdAndTitle[0]}'>".$separateIdAndTitle[1]."</a> | ";                           endforeach;
-                        ?></h5>
-                        </p><p><?= cutTheTextModel($item["articles_text"]) ?> ... <a
+                            $cutCateg = explode("|||", $item['categ']);
+                            foreach ($cutCateg as $categ):
+                                $separateIdAndTitle = explode("---", $categ);
+                                echo "<a href='?rubrique={$separateIdAndTitle[0]}'>" . $separateIdAndTitle[1] . "</a> | "; endforeach;
+                            ?></h5>
+                        <p><?= cutTheTextModel($item["articles_text"]) ?> ... <a
                                     href="?detailArticle=<?= $item["idarticles"] ?>">Lire la suite</a></p>
                         <h5>Par <?= $item["users_name"] ?> <?= functionDateModel($item["articles_date"]) ?></h5>
                         <hr>
