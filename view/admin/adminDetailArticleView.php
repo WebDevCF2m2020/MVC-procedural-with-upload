@@ -63,6 +63,17 @@
                         endif;
                         ?>
                     </p>
+                    <h5>
+                        <?php
+                        foreach (recupRubriquesByIdFromArticle($db,$recup["idarticles"]) AS $rub):
+                            //var_dump($rub);
+                            ?>
+
+                            <?=$rub['rubriques_titre']?> |
+                        <?php
+                        endforeach;
+                        ?>
+                    </h5>
                     <p class="lead"><a href="./">Retournez à l'accueil de l'admin</a></p>
                     <p>Actions : <a href="?p=update&id=<?= $recup["idarticles"] ?>" title="Mettre à jour l'article"><img
                                     src="img/update.png" alt="update"/></a>

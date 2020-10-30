@@ -55,7 +55,8 @@
                     // tant que nous avons des articles
                     foreach ($recupPagination as $item):
                         ?>
-                        <h3><?= $item["articles_title"] ?></h3><p>
+                        <h3><a
+                                    href="?detailArticle=<?= $item["idarticles"] ?>"><?= $item["articles_title"] ?></a></h3><p>
                         <?php
                         if(!empty($item["theimages_name"])):
                             $arrayImgName = explode("|||", $item["theimages_name"]);
@@ -70,7 +71,17 @@
                         endif;
                         ?>
                     </p>
-                    <h5>Les categs</h5>
+                    <h5>
+                        <?php
+                        foreach (recupRubriquesByIdFromArticle($db,$item["idarticles"]) AS $rub):
+                            //var_dump($rub);
+                            ?>
+
+                            <?=$rub['rubriques_titre']?> |
+                        <?php
+                        endforeach;
+                        ?>
+                    </h5>
                         <p>Actions : <a href="?p=update&id=<?= $item["idarticles"] ?>"
                                         title="Mettre à jour l'article"><img src="img/update.png" alt="update"/></a>
                             <a href="?p=delete&id=<?= $item["idarticles"] ?>" title="Supprimer l'article"><img
