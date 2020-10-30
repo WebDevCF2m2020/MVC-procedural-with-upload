@@ -110,6 +110,7 @@
                         endforeach;
                         ?>
                     </div>
+                    <h5>ON EST ICI</h5>
                     <button type="submit" class="btn btn-primary">Mettre à jour</button>
                     <hr>
                     <h3>Ajouter une image</h3>

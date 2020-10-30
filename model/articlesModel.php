@@ -68,6 +68,22 @@ function insertArticle($c,$title,$text,$id){
     return ($request)? mysqli_insert_id($c) :false;
 }
 
+// insertion du lien avec les catégories dans articles_has_rubriques
+function insertLinkArticlesWithRubriques($c,$idarticles,$tabIdRubriques){
+
+    // préparation de notre requête SQL avant la boucle
+    $sql = "INSERT INTO articles_has_rubriques (articles_idarticles,rubriques_idrubriques) VALUES ";
+    // tant que l'on a des rubriques cochées
+    foreach($tabIdRubriques AS $item){
+        // on allonge notre requête SQL (évite des allez retour PHP/SQL)
+        $sql .= "($idarticles,$item),";
+    }
+    // on retire la virgule de fin avec substr
+    $sql = substr($sql,0,-1);
+    $query = mysqli_query($c,$sql) or die(mysqli_error($c));
+    return ($query)? true: false;
+}
+
 // suppression d'un article via son ID
 
 function deleteArticle($connect,$id){
