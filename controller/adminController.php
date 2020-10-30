@@ -3,6 +3,7 @@
 require_once "../model/articlesModel.php";
 require_once "../model/usersModel.php";
 require_once "../model/theimagesModel.php";
+require_once "../model/rubriquesModel.php";
 
 
 
@@ -198,7 +199,7 @@ if(isset($_GET['p'])&&$_GET['p']=="update"){
 }
 
 
-
+// accueil de l'admin
 
 // Mise en place de la pagination
 
@@ -212,20 +213,19 @@ if(isset($_GET['pg'])){
 // calcul pour la requête - nombre d'articles totaux, sans erreurs SQL ce sera toujours un int, de 0 à ...
 $nbTotalArticles = countAllArticles($db);
 
-$nb_per_page_admin = 10;
 
 // Calcul pour avoir la première partie du LIMIT *, 10 dans la requête stockée dans articlesModel.php nommée articlesLoadResumePagination()
-$debut_tab = ($pgactu-1)*$nb_per_page_admin;
+$debut_tab = ($pgactu-1)*NUMBER_ARTICLE_PER_PAGE_ADMIN;
 
-// requête avec le LIMIT appliqué
-$recupPagination = articlesLoadResumePagination($db,$debut_tab,$nb_per_page_admin);
+// requête avec le LIMIT appliqué pour récupérer tous les articles
+$recupPagination = articlesLoadResumePagination($db,$debut_tab,NUMBER_ARTICLE_PER_PAGE_ADMIN);
 
 // pas d'articles
 if(!$recupPagination){
     $erreur = "Pas encore d'article";
 }else {
     // nous avons des articles, création de la pagination si nécessaire
-    $pagination = paginationModel($nbTotalArticles, $pgactu, $nb_per_page_admin);
+    $pagination = paginationModel($nbTotalArticles, $pgactu, NUMBER_ARTICLE_PER_PAGE_ADMIN);
 }
 
 // Default View

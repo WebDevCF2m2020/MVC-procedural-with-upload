@@ -48,10 +48,10 @@
                     <h2>Tous les articles</h2>
                     <p>Actions : <a href="?p=create" title="Ajouter un article"><img src="img/add.png" alt="add"/></a>
                     </p>
-                    <p class="lead">Nombre d'articles: <?= $nbTotalArticles ?></p>
+                    <p class="lead">Nombre d'articles: <?= $nbTotalArticles ?></p><hr>
                     <?php
                     // affichage de la pagination
-                    echo $pagination;
+                    echo $pagination."<hr>";
                     // tant que nous avons des articles
                     foreach ($recupPagination as $item):
                         ?>
@@ -70,6 +70,7 @@
                         endif;
                         ?>
                     </p>
+                    <h5>Les categs</h5>
                         <p>Actions : <a href="?p=update&id=<?= $item["idarticles"] ?>"
                                         title="Mettre à jour l'article"><img src="img/update.png" alt="update"/></a>
                             <a href="?p=delete&id=<?= $item["idarticles"] ?>" title="Supprimer l'article"><img
@@ -83,7 +84,7 @@
                     echo $pagination;
                 endif;
 
-                ?>
+                ?><hr>
             </div>
 
         </div>
