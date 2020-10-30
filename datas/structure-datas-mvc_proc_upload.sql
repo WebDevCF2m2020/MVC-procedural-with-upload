@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le :  ven. 30 oct. 2020 à 12:30
+-- Généré le :  ven. 30 oct. 2020 à 14:49
 -- Version du serveur :  5.7.28
 -- Version de PHP :  7.3.12
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
                                           PRIMARY KEY (`idarticles`),
                                           UNIQUE KEY `titre_UNIQUE` (`articles_title`),
                                           KEY `fk_articles_users_idx` (`users_idusers`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `articles`
@@ -56,7 +56,8 @@ INSERT INTO `articles` (`idarticles`, `articles_title`, `articles_text`, `articl
 (46, 'Les vaccins européens seront distribués &quot;au même moment&quot; entre les Etats-membres', '&quot;Il y a déjà un accord des 27 sur ce point&quot;, a assuré l&#039;Allemande.\r\n\r\n&quot;Nous devons anticiper le moment où un ou plusieurs vaccins seront disponibles&quot;, a expliqué à ses côtés le président du Conseil européen Charles Michel, revenant sur le contenu des discussions. Il fallait entre autres s&#039;assurer &quot;que nous sommes bien d&#039;accord pour garantir une distribution équitable entre Etats membres&quot; quand un ou plusieurs contrats signés par la Commission se concrétiseront par la fourniture de vaccins. Il faudra aussi &quot;tenter de converger sur la question des populations qui devraient avoir un accès prioritaire aux vaccins&quot;. Il y a eu jeudi soir un échange de vues à ce sujet, qui a été positif, ont assuré les deux présidents.\r\n\r\nLa Commission a transmis aux Etats un document basé sur des recommandations scientifiques, mettant en avant les éléments à prendre en compte pour prioriser les vaccinations. &quot;On a demandé aux Etats d&#039;implémenter maintenant cela au niveau national, et de nous transmettre leur stratégie de vaccination. Cela a été bien reçu&quot;, ajoute Ursula von der Leyen.\r\n\r\nLa Commission a déjà conclu des contrats d&#039;achat anticipé avec trois groupes pharmaceutiques. Via ces contrats, elle s&#039;assure d&#039;acquérir un certain nombre de doses, achetées finalement par les Etats membres, si le vaccin développé passe avec succès toutes les phases d&#039;essais cliniques et se révèle suffisamment sûr et efficace pour une mise sur le marché européen. La Commission est proche de contrats similaires avec trois autres firmes et les discussions avancent bien avec une septième. Depuis que l&#039;exécutif européen a lancé cette stratégie de négociations centralisées et d&#039;achats communs anticipés, il a toujours assuré que son but est d&#039;avoir un portefeuilles varié de vaccins, de quoi augmenter ses chances de pouvoir couvrir toute la population qui en a besoin.\r\n\r\nLa collaboration devra aussi être logistique, car les campagnes de vaccination seront de vrais défis sur ce point, a insisté Charles Michel. Les vaccins attendus ne devront pas forcément être tous conservés à la même température, ce qui implique un transport différent, etc. &quot;Il y a sur tous ces sujets une très forte volonté de travailler d&#039;arrache pied&quot; pour harmoniser, insiste Charles Michel.', '2020-10-30 07:59:39', 3),
 (47, 'Les autorités n&#039;ont jamais reçu autant de signalements de cyberattaques: &quot;Le nombre réel est encore bien plus élevé&quot;', 'Le Centre pour la Cybersécurité Belgique (CCB) a déjà reçu cette année 5.387 signalements de cyberattaques ou d&#039;autres incidents en ligne, relate De Tijd vendredi. C&#039;est plus que sur toute l&#039;année 2019, au cours de laquelle 4.484 notifications avaient été reçues. Les méthodes les plus rapportées sont le hameçonnage et les rançongiciels, a indiqué le Premier ministre Alexander De Croo (Open Vld) - dont dépend le CCB - alors qu&#039;il répondait à une question parlementaire de Katrien Houtmeyers (N-VA).\r\n\r\nSelon M. De Croo, ces milliers de signalements n&#039;offrent pour autant pas une image complète du problème. &quot;Le nombre réel de cyberattaques en Belgique est en réalité bien plus élevé. Tant des entreprises que des particuliers indiquent en avoir été victimes, sans toujours avoir porté plainte à la police. À l&#039;exception de quelques fournisseurs de services essentiels qui relèvent de la loi sur la sécurité des réseaux et de l&#039;information, il n&#039;y a aucune obligation de signaler les incidents en ligne&quot;.\r\n\r\nEn revanche, tempère le Premier ministre, ce nombre record de rapports indique que la plateforme de signalement en ligne cert.be devient de plus en plus connue des victimes.', '2020-10-30 08:05:37', 1),
 (48, 'sdfgqsdtgr', 'grfjhytj', '2020-10-30 12:18:00', 1),
-(49, 'Carte confinement : notre sélection d&#039;outils pour calculer le déplacement de 1 km autour de chez vous', 'Alors que le confinement limite à nouveau les déplacements des Français, Clubic vous propose une liste d&#039;outils indispensables qui vous aideront à ne pas sortir des clous des restrictions du gouvernement.\r\n\r\nOn se souviendra du vendredi 30 octobre 2020 comme le début du deuxième confinement imposé par l&#039;État aux Français, dans le cadre de la pandémie de Covid-19, qui a fait plus de 36 000 morts dans le pays depuis le début de l&#039;année. Comme au printemps, les déplacements sont interdits, mais des exceptions sont toutefois possibles, à l&#039;aide d&#039;une attestation qu&#039;on ne peut que vous conseiller de télécharger ou d&#039;imprimer depuis le site du gouvernement. Certains déplacements brefs sont par exemple autorisés, mais dans un rayon maximal d&#039;un kilomètre et dans la limite d&#039;une heure par jour. Pour savoir jusqu&#039;où vous pouvez mettre les pieds pour vos balades, votre footing ou vos sorties avec Junior, plusieurs outils, gratuits, sont à votre disposition en ligne. Clubic vous propose sa sélection.\r\n\r\n1. Géoportail, le précis « gouvernemental »\r\n\r\nLe portail Web géographique du gouvernement, Géoportail, a trouvé ces derniers mois une nouvelle utilité. Déjà plébiscité par les Français lors du premier confinement, l&#039;outil devrait à nouveau trouver son intérêt auprès du public avec sa carte.\r\n\r\nAprès avoir accédé aux outils cartographiques en cliquant en haut à droite sur la petite clé plate, il vous suffit de cliquer sur l&#039;onglet « Mesures » puis de choisir l&#039;option « Calculer une isochrone ». Ensuite, vous n&#039;avez plus qu&#039;à entrer votre adresse et à bien sélectionner le bouton « isodistance » en rentrant « 1 », correspondant à la distance de déplacement autorisée autour de votre domicile, et à choisir le mode piéton, avant d&#039;appuyer sur le bouton « Calculer » pour voir le résultat.\r\n\r\nEt celui-ci est tout à fait convenable. L&#039;outil est plutôt intelligent, puisqu&#039;il délimite directement un périmètre défini en fonction du paysage, de l&#039;aménagement ou de la topographie du territoire où vous vous trouvez. Par exemple, en choisissant un lieu situé en bord de mer, la carte prend soin de découper les limites.', '2020-10-30 12:27:30', 2);
+(49, 'Carte confinement : notre sélection d&#039;outils pour calculer le déplacement de 1 km autour de chez vous', 'Alors que le confinement limite à nouveau les déplacements des Français, Clubic vous propose une liste d&#039;outils indispensables qui vous aideront à ne pas sortir des clous des restrictions du gouvernement.\r\n\r\nOn se souviendra du vendredi 30 octobre 2020 comme le début du deuxième confinement imposé par l&#039;État aux Français, dans le cadre de la pandémie de Covid-19, qui a fait plus de 36 000 morts dans le pays depuis le début de l&#039;année. Comme au printemps, les déplacements sont interdits, mais des exceptions sont toutefois possibles, à l&#039;aide d&#039;une attestation qu&#039;on ne peut que vous conseiller de télécharger ou d&#039;imprimer depuis le site du gouvernement. Certains déplacements brefs sont par exemple autorisés, mais dans un rayon maximal d&#039;un kilomètre et dans la limite d&#039;une heure par jour. Pour savoir jusqu&#039;où vous pouvez mettre les pieds pour vos balades, votre footing ou vos sorties avec Junior, plusieurs outils, gratuits, sont à votre disposition en ligne. Clubic vous propose sa sélection.\r\n\r\n1. Géoportail, le précis « gouvernemental »\r\n\r\nLe portail Web géographique du gouvernement, Géoportail, a trouvé ces derniers mois une nouvelle utilité. Déjà plébiscité par les Français lors du premier confinement, l&#039;outil devrait à nouveau trouver son intérêt auprès du public avec sa carte.\r\n\r\nAprès avoir accédé aux outils cartographiques en cliquant en haut à droite sur la petite clé plate, il vous suffit de cliquer sur l&#039;onglet « Mesures » puis de choisir l&#039;option « Calculer une isochrone ». Ensuite, vous n&#039;avez plus qu&#039;à entrer votre adresse et à bien sélectionner le bouton « isodistance » en rentrant « 1 », correspondant à la distance de déplacement autorisée autour de votre domicile, et à choisir le mode piéton, avant d&#039;appuyer sur le bouton « Calculer » pour voir le résultat.\r\n\r\nEt celui-ci est tout à fait convenable. L&#039;outil est plutôt intelligent, puisqu&#039;il délimite directement un périmètre défini en fonction du paysage, de l&#039;aménagement ou de la topographie du territoire où vous vous trouvez. Par exemple, en choisissant un lieu situé en bord de mer, la carte prend soin de découper les limites.', '2020-10-30 12:27:30', 2),
+(50, 'La loi de programmation de la recherche va programmer… la fin de la recherche française', 'Du gel des postes aux financements privés, le projet de loi s&#039;éloigne de plus en plus de l&#039;intérêt commun. La LPR doit être abandonnée afin de sauvegarder un enseignement supérieur et une recherche scientifique démocratiques, équitables et publics.\r\n\r\nNous rappelons que le préambule de la Constitution française de 1958 garantit l’équité d’accès pour toutes et tous à l’éducation, c’est-à-dire l’accès pour toutes et tous aux formations primaires, secondaires mais également supérieures. Malgré des soubresauts à chaque changement gouvernemental, le système est arrivé entre les années 1970 et 2000 à une relative équité de moyens humains et financiers entre établissements universitaires publics pour exercer leurs missions.\r\n\r\nAinsi, au sein des 85 universités françaises réparties sur le territoire, le citoyen pouvait être assuré de bénéficier d’une formation de qualité proche de lui, dispensée par des personnels qualifiés ; qualifications garanties par des normes nationales de formation et de recrutement. Mais dès les années 90, des rapports successifs au sein de l’Organisation de coopération et de développement économiques (OCDE) ont pointé le désinvestissement de la recherche privée entrepreneuriale, cœur de la recherche appliquée. La Commission européenne s’est alors portée à son chevet au travers d’une politique stratégique d’assujettissement à moyen terme de l’éducation et de la recherche publiques européennes au monde économique privé.\r\n\r\nLa course aux financements\r\nSur le plan de la recherche, ce sont les financements dits par appels à projet qui se déploient au détriment des financements dits récurrents, pérennes, des laboratoires. Ces financements par à-coups (typiquement de un à trois ans) limitent les bénéficiaires, flèchent et restreignent drastiquement les thématiques de recherche vers les besoins du privé (principalement du secteur industriel) et instaurent la mise en concurrence entre tous les acteurs : individus, laboratoires, établissements. Le temps consacré à la recherche elle-même en pâtit de par la multiplication du temps pour courir après son financement.\r\n\r\nLa raréfaction des moyens récurrents pousse progressivement les chercheurs à orienter leur travail sur les thématiques financées, laissant de côté des pans entiers de recherche, notamment la recherche fondamentale. Bien que garanties par le code de la recherche, l’indépendance et la liberté des chercheurs se trouvent de fait soumises au diktat des agences et aux interférences de l’Etat. Le Covid-19, thématique de recherche devenue moins «porteuse», en est un exemple criant. Toutes les disciplines scientifiques sont touchées, mais plus particulièrement celles des sciences humaines et sociales. Or n’oublions pas que la recherche alimente la mise à jour des contenus de formations du supérieur.\r\n\r\nPrises en étau entre une sous-dotation organisée, caractérisée par le «gel» de postes et les embauches de vacataires, et une augmentation des charges avec l’augmentation du nombre d’étudiants ou l’internationalisation des recherches, bon nombre d’universités sont au bord de la rupture et sabrent dans les formations, faisant de fait voler en éclat l’équité territoriale de l’ESR.\r\n\r\nLa LPR, présentée comme la solution, pourrait être l’acte de décès de notre système universitaire de service public. Cette loi sanctuarise les inégalités entre établissements, entre personnels et entre usagers : d’un côté les universités d’excellence, de l’autre celles de proximité. Cela ne doit pas avoir lieu. L’équité sur tout le territoire des établissements universitaires doit redevenir une clé de voûte de la Constitution française ! Cette loi renforcera les luttes intestines pour trouver des moyens de travail au lieu de fédérer les énergies pour irriguer la société de nouveaux savoirs. Elle favorisera les dérives vers des abus d’autorité jusqu’aux méconduites scientifiques.', '2020-10-30 14:48:04', 3);
 
 -- --------------------------------------------------------
 
@@ -87,12 +88,14 @@ INSERT INTO `articles_has_rubriques` (`articles_idarticles`, `rubriques_idrubriq
 (40, 7),
 (46, 7),
 (49, 7),
+(50, 7),
 (40, 8),
 (44, 8),
 (37, 9),
 (40, 9),
 (41, 9),
 (46, 9),
+(50, 9),
 (1, 10),
 (40, 10),
 (2, 11),
@@ -104,6 +107,7 @@ INSERT INTO `articles_has_rubriques` (`articles_idarticles`, `rubriques_idrubriq
 (45, 11),
 (46, 11),
 (47, 11),
+(50, 11),
 (2, 12),
 (40, 12),
 (41, 12),
@@ -112,14 +116,17 @@ INSERT INTO `articles_has_rubriques` (`articles_idarticles`, `rubriques_idrubriq
 (46, 12),
 (47, 12),
 (49, 12),
+(50, 12),
 (37, 13),
 (38, 13),
 (39, 13),
 (47, 13),
 (49, 13),
+(50, 13),
 (2, 14),
 (3, 14),
-(46, 14);
+(46, 14),
+(50, 14);
 
 -- --------------------------------------------------------
 
@@ -161,7 +168,8 @@ INSERT INTO `articles_has_theimages` (`articles_idarticles`, `theimages_idtheima
 (45, 41),
 (46, 42),
 (47, 43),
-(49, 44);
+(49, 44),
+(50, 45);
 
 -- --------------------------------------------------------
 
@@ -230,7 +238,7 @@ CREATE TABLE IF NOT EXISTS `theimages` (
                                            `theimages_name` varchar(60) NOT NULL,
                                            PRIMARY KEY (`idtheimages`),
                                            UNIQUE KEY `theimages_name_UNIQUE` (`theimages_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `theimages`
@@ -257,7 +265,8 @@ INSERT INTO `theimages` (`idtheimages`, `theimages_title`, `theimages_name`) VAL
 (41, 'Good Morning FrenchWeb', '20201030075626-62204.png'),
 (42, 'AFP', '20201030075939-88860.png'),
 (43, 'CCB', '20201030080537-70543.png'),
-(44, 'Clubic', '20201030122730-32704.png');
+(44, 'Clubic', '20201030122730-32704.png'),
+(45, 'Dans un laboratoire qui travaille sur un traitement contre le coronavirus, en f&eacute;vrier.', '20201030144804-88533.jpg');
 
 -- --------------------------------------------------------
 
