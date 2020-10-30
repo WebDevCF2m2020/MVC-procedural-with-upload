@@ -56,25 +56,29 @@
                     <?php
                     // affichage de la pagination
                     echo $pagination;
+                    ?>
+                    <hr>
+                    <?php
                     // tant que nous avons des articles
                     foreach ($recupPagination as $item):
                         ?>
-                        <h4><?= $item["articles_title"] ?></h4><p>
-                        <?php
-                        if (!empty($item["theimages_name"])):
-                            $arrayImgName = explode("|||", $item["theimages_name"]);
-                            $arrayImgTitle = explode("|||", $item["theimages_title"]);
-                            $i = 0;
-                            foreach ($arrayImgName as $img):
-                                ?>
-                                <img src="<?= IMG_UPLOAD_SMALL . $img ?>" alt="<?= $arrayImgTitle[$i] ?>"/>
+                        <h4><a href="?detailArticle=<?= $item["idarticles"] ?>"><?= $item["articles_title"] ?></h4></a>
+                        <p>
+                            <?php
+                            if (!empty($item["theimages_name"])):
+                                $arrayImgName = explode("|||", $item["theimages_name"]);
+                                $arrayImgTitle = explode("|||", $item["theimages_title"]);
+                                $i = 0;
+                                foreach ($arrayImgName as $img):
+                                    ?>
+                                    <img src="<?= IMG_UPLOAD_SMALL . $img ?>" alt="<?= $arrayImgTitle[$i] ?>"/>
 
-                                <?php
-                                $i++;
-                            endforeach;
-                        endif;
-                        ?>
-                    </p>
+                                    <?php
+                                    $i++;
+                                endforeach;
+                            endif;
+                            ?>
+                        </p>
                         <h5>ON EST ICI : categ</h5>
                         <p><?= cutTheTextModel($item["articles_text"]) ?> ... <a
                                     href="?detailArticle=<?= $item["idarticles"] ?>">Lire la suite</a></p>
@@ -86,6 +90,7 @@
                 endif;
 
                 ?>
+                <hr>
             </div>
 
         </div>

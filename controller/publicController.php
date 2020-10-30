@@ -99,7 +99,7 @@ if(isset($_GET['rubrique'])&&ctype_digit($_GET['rubrique'])){
         $erreur = "Pas encore d'article";
     }else {
         // nous avons des articles, création de la pagination si nécessaire
-        $pagination = paginationModel($nbTotalArticles, $pgactu, NUMBER_ARTICLE_PER_PAGE);
+        $pagination = paginationModel($nbTotalArticles, $pgactu, NUMBER_ARTICLE_PER_PAGE,"rubrique=$idrubriques");
     }
     // view
     require_once "../view/public/rubriquesView.php";

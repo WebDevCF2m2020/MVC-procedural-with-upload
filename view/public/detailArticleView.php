@@ -18,10 +18,11 @@
             <ul class="navbar-nav">
 
                 <?php
-                foreach($recAllRubriques AS $itemMenu):
+                foreach ($recAllRubriques as $itemMenu):
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="?rubrique=<?=$itemMenu['idrubriques']?>"><?=$itemMenu['rubriques_titre']?></a>
+                        <a class="nav-link"
+                           href="?rubrique=<?= $itemMenu['idrubriques'] ?>"><?= $itemMenu['rubriques_titre'] ?></a>
                     </li>
                 <?php
                 endforeach;
@@ -51,17 +52,19 @@
                 <?php
                 else:
                     ?>
-                    <h1>Notre article : <?= $recup['articles_title'] ?></h1>
+                    <h2>Notre article : <?= $recup['articles_title'] ?></h2>
                     <p class="lead"><a href="./">Retournez à l'accueil</a></p>
                     <p>
                         <?php
-                        if(!empty($recup["theimages_name"])):
+                        if (!empty($recup["theimages_name"])):
                             $arrayImgName = explode("|||", $recup["theimages_name"]);
                             $arrayImgTitle = explode("|||", $recup["theimages_title"]);
-                            $i=0;
-                            foreach($arrayImgName AS $img):
+                            $i = 0;
+                            foreach ($arrayImgName as $img):
                                 ?>
-                                <a href="<?=IMG_UPLOAD_MEDIUM.$img?>" target="_blank" title="<?=$arrayImgTitle[$i]?>"><img src="<?=IMG_UPLOAD_SMALL.$img?>" alt="<?=$arrayImgTitle[$i]?>"/></a>
+                                <a href="<?= IMG_UPLOAD_MEDIUM . $img ?>" target="_blank"
+                                   title="<?= $arrayImgTitle[$i] ?>"><img src="<?= IMG_UPLOAD_SMALL . $img ?>"
+                                                                          alt="<?= $arrayImgTitle[$i] ?>"/></a>
                                 <?php
                                 $i++;
                             endforeach;
