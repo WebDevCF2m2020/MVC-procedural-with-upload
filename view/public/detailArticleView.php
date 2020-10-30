@@ -70,6 +70,17 @@
                             endforeach;
                         endif;
                         ?>
+                        <h5>
+                        <?php
+                        foreach (recupRubriquesByIdFromArticle($db,$idArticles) AS $rub):
+                            //var_dump($rub);
+                        ?>
+
+                        <a href="?rubrique=<?=$rub['idrubriques']?>"><?=$rub['rubriques_titre']?></a> |
+                        <?php
+                        endforeach;
+                        ?>
+                        </h5>
                     </p>
                     <p><?= nl2br($recup["articles_text"]) ?></p>
                     <h5>Par <?= $recup["users_name"] ?> <?= functionDateModel($recup["articles_date"]) ?></h5>

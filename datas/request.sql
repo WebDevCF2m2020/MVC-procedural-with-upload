@@ -126,4 +126,25 @@ FROM articles a
 GROUP BY a.idarticles
 ORDER BY a.articles_date DESC
 LIMIT 0,5;  
-    
+
+# On sélèctionne les détails d'un article par son ID    
+ SELECT a.idarticles, a.articles_title, a.articles_text, a.users_idusers, a.articles_date, 
+	u.idusers, u.users_name , 
+    GROUP_CONCAT(t.idtheimages) AS idtheimages, GROUP_CONCAT(t.theimages_title SEPARATOR '|||') AS theimages_title, GROUP_CONCAT(t.theimages_name SEPARATOR '|||') 
+    AS theimages_name 
+    FROM articles a 
+	INNER JOIN users u 
+		ON a.users_idusers = u.idusers
+    LEFT JOIN  articles_has_theimages hi 
+        ON hi.articles_idarticles = a.idarticles
+    LEFT JOIN theimages t 
+        ON t.idtheimages = hi.theimages_idtheimages
+WHERE a.idarticles=39
+GROUP BY a.idarticles ;  
+
+# On sélection les rubriques pour recupRubriquesByIdFromArticle() un article, inutile de joindre articles car la clef primaire de celle-ci se trouve en tant que clef étrangère dans la table articles_has_rubriques
+SELECT  r.idrubriques, r.rubriques_titre
+FROM rubriques r
+INNER JOIN articles_has_rubriques ha
+	ON ha.rubriques_idrubriques = r.idrubriques
+WHERE ha.articles_idarticles = 39;

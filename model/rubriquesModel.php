@@ -87,3 +87,16 @@ LIMIT $begin, $nbperpage;";
     // no result
     return false;
 }
+
+// Charge les rubriques pour un article via l'id de l'article (la table many to many suffit pour cette requête)
+function recupRubriquesByIdFromArticle($c,$idarticle){
+    $idarticle = (int) $idarticle;
+    $sql="SELECT r.idrubriques, r.rubriques_titre
+FROM rubriques r
+INNER JOIN articles_has_rubriques ha
+	ON ha.rubriques_idrubriques = r.idrubriques
+WHERE ha.articles_idarticles = $idarticle;";
+    $request = mysqli_query($c,$sql) or die(mysqli_error($c));
+    // si on a au moins une rubrique, on l'envoie (les) en tableau indexé contenant des tableaux associatifs
+    return (mysqli_num_rows($request))? mysqli_fetch_all($request,MYSQLI_ASSOC):[];
+}
