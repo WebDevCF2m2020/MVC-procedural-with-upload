@@ -53,6 +53,7 @@
                 else:
                     ?>
                     <h1>Rubrique : <?= $recupRubriques['rubriques_titre'] ?></h1>
+                    <p class="lead"><?= $recupRubriques['rubriques_text'] ?></p>
                     <p class="lead"><a href="./">Retournez à l'accueil</a></p>
                     <p class="lead">Nombre d'articles de cette rubrique : <?= $nbTotalArticles ?></p>
                     <?php
