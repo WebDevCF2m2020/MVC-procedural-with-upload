@@ -82,6 +82,23 @@
                         endforeach;
                         ?>
                     </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword5">Choix des rubriques</label>
+                        <?php
+                        foreach ($recup_categs as $item):
+                            ?>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="idrubriques[]" id="exampleRadios5"
+                                       value="<?= $item['idrubriques'] ?>">
+                                <label class="form-check-label" for="exampleRadios5">
+                                    <?= $item['rubriques_titre'] ?>
+                                </label>
+                            </div>
+
+                        <?php
+                        endforeach;
+                        ?>
+                    </div>
                     <button type="submit" class="btn btn-primary">Envoyer</button>
 
             <hr>

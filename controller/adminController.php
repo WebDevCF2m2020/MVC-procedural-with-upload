@@ -44,6 +44,9 @@ if(isset($_GET['p'])&&$_GET['p']=="create"){
     // si on a envoyé le formulaire (toutes les variables POST attendues existent)
     if(isset($_POST['articles_title'],$_POST['articles_text'],$_POST['idusers'])){
 
+        //var_dump($_POST);
+        //exit();
+
         // traitement des variables
         $titre= htmlspecialchars(strip_tags(trim($_POST['articles_title'])),ENT_QUOTES);
         // exception pour le strip_tags qui va accepter
@@ -84,6 +87,8 @@ if(isset($_GET['p'])&&$_GET['p']=="create"){
 
     // on récupère tous les auteurs potentiels
     $recup_autors = AllUser($db);
+    // on récupère toutes les rubriques potentielles
+    $recup_categs = recupAllRubriques($db);
 
     require_once "../view/admin/adminInsertArticleView.php";
     //var_dump($_POST);
