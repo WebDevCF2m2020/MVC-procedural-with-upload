@@ -5,6 +5,7 @@
     <title>Supprimer un article</title>
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="css/custom.min.css" media="screen">
+    <link rel="stylesheet" href="css/lightbox.min.css" media="screen">
 </head>
 <body>
 <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
