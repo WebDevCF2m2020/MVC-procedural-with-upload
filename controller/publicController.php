@@ -142,7 +142,7 @@ foreach ($recupPagination as $item):
             $arrayImgTitle = explode("|||", $item["theimages_title"]);
             $i = 0;
             foreach ($arrayImgName as $img):
-                $sortie .="<a href='" .IMG_UPLOAD_MEDIUM.$img ."' data-lightbox=\"example-set-{$item["idarticles"]}\"><img src='" .IMG_UPLOAD_SMALL.$img ."' alt=\"$arrayImgTitle[$i]\" /></a>";
+                $sortie .="<a href='" .IMG_UPLOAD_MEDIUM . $img ."' data-lightbox=\"example-set-{$item["idarticles"]}\"><img src='" .IMG_UPLOAD_SMALL.$img ."' alt=\"$arrayImgTitle[$i]\" /></a>";
                 $i++;
             endforeach;
         endif;

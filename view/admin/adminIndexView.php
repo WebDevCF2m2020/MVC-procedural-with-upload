@@ -66,7 +66,7 @@
                             $i=0;
                             foreach($arrayImgName AS $img):
                                 ?>
-                                <img src="<?=IMG_UPLOAD_SMALL.$img?>" alt="<?=$arrayImgTitle[$i]?>"/>
+                                <a href='<?=IMG_UPLOAD_MEDIUM . $img?>' data-lightbox="example-set-<?=$item["idarticles"]?>"><img src="<?=IMG_UPLOAD_SMALL.$img?>" alt="<?=$arrayImgTitle[$i]?>"/></a>
                                 <?php
                                 $i++;
                             endforeach;
