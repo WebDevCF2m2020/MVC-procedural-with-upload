@@ -5,6 +5,8 @@
     <title>Accueil de l'administration</title>
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="css/custom.min.css" media="screen">
+    <link rel="stylesheet" href="css/lightbox.min.css" media="screen">
+    <link rel="shortcut icon" href="/img/favicon.ico">
 </head>
 <body>
 <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
@@ -47,5 +49,6 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
+    <script src="js/lightbox.js"></script>
 </body>
 </html>
