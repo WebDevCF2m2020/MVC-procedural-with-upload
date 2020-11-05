@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/lightbox.min.css" media="screen">
     <link rel="shortcut icon" href="/img/favicon.ico">
 </head>
-<body>
+<body id="page-top">
 <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
     <div class="container">
         <a href="./" class="navbar-brand">Accueil de l'administration</a>

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/lightbox.min.css" media="screen">
     <link rel="shortcut icon" href="/img/favicon.ico">
 </head>
-<body>
+<body id="page-top">
 <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
     <div class="container">
         <a href="./" class="navbar-brand">Accueil</a>
@@ -85,13 +85,16 @@
                     </p>
                     <p><?= nl2br($recup["articles_text"]) ?></p>
                     <h5>Par <?= $recup["users_name"] ?> <?= functionDateModel($recup["articles_date"]) ?></h5>
-                    <hr>
+
 
                 <?php
 
                 endif;
 
                 ?>
+                <hr>
+                <a href="#page-top">Retour en haut</a>
+                <hr>
             </div>
 
         </div>
