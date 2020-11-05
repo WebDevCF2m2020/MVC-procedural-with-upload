@@ -33,7 +33,7 @@
 
     <div class="page-header" id="banner">
         <div class="row">
-            <div class="col-lg-8 col-md-7 col-sm-6">
+            <div class="col-lg-12 mx-auto">
                 <h1>Administration</h1>
                 <p class="lead">Bienvenue <?= $_SESSION['users_name'] ?>, vous êtes <?= $_SESSION['permissions_name'] ?></p>
                 <hr>
