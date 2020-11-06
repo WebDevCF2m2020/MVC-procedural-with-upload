@@ -52,19 +52,26 @@ function theimagesDelete($c,$idtheimages,$theimages_name,$foldersOri, $foldersMe
 
 /*
  * Upload Images functions
+ *
+ * @arg
+ *
  * $fichier => array $_FILES -> form enctype="multipart/form-data"
  * $extension => array [".jpg",".png",...]
  * $sizeMax => int 50000 (bytes) max
  * $foldersOri => string path to original folder
  * $foldersMedium => string path to resize images
  * $foldersSmall => string path to crop images
+ *
  * @optional
+ *
  * $widthMedium => int max width in pixel for resize images
  * $heightMedium => int max height in pixel for resize images
  * $whidthSmall => int max width in pixel for crop images
  * $heightSmall => int max height in pixel for crop images
  * $qualityMedium => int compress jpg only (for resized images)
  * $qualitySmall => int compress jpg only (for cropped images)
+ *
+ * @return array | string
  *
  * require for use:
  * theimagesVerifExtend()
@@ -207,6 +214,7 @@ function theimagesMakeThumbs($name, $largeurOri, $hauteurOri, $extension, $origi
     $original_aspect = $width / $height;
     $thumb_aspect = $thumb_width / $thumb_height;
 
+    // divisions pour trouver le point de départ en X ou en Y pour couper l'image au milieu, que ça soit en hauteur (paysage) ou en largeur (portrait)
     if ($original_aspect >= $thumb_aspect) {
 
         $new_height = $thumb_height;
