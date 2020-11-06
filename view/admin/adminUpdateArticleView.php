@@ -117,7 +117,7 @@
                         <label for="exampleInputPassword5">Choix des rubriques</label>
                         <?php
                         // var_dump($recupRubrique);
-                        foreach ($recup_categs as $item):
+                        foreach ($recupCategs as $item):
 
                             ?>
                             <div class="form-check form-check-inline">

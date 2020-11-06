@@ -85,6 +85,16 @@ function insertLinkArticlesWithRubriques($c,$idarticles,$tabIdRubriques){
     return ($query)? true: false;
 }
 
+// suppression des liens avec les catégories dans articles_has_rubriques
+function deleteLinkArticlesWithRubriques($c,$idarticles){
+    $idarticles = (int) $idarticles;
+    // préparation de notre requête SQL avant la boucle
+    $sql = "DELETE FROM articles_has_rubriques WHERE articles_idarticles = $idarticles";
+
+    $query = mysqli_query($c,$sql) or die(mysqli_error($c));
+    return ($query)? true: false;
+}
+
 // suppression d'un article via son ID
 
 function deleteArticle($connect,$id){

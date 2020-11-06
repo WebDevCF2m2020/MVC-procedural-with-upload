@@ -180,6 +180,14 @@ if(isset($_GET['p'])&&$_GET['p']=="update"){
 
             // si l'update a eu lieue
             if($update){
+                // Pour les rubriques, lors d'un update, on supprime toujours les rubriques pour l'article, elles seront remplacées ci-dessous par les nouvelles rubriques
+                deleteLinkArticlesWithRubriques($db,$id);
+
+                    // Si il existe au moins une rubrique cochée
+                    if(isset($_POST['idrubriques'])) {
+                        // ajout de toutes les rubriques
+                        insertLinkArticlesWithRubriques($db, $id,$_POST['idrubriques']);
+                    }
                 // si on veut y ajouter une image
                 if(!empty($_FILES['theimages_name'])){
                     $upload = theimagesUpload($_FILES['theimages_name'],IMG_FORMAT,IMG_MAX_SIZE,IMG_UPLOAD_ORIGINAL,IMG_UPLOAD_MEDIUM,IMG_UPLOAD_SMALL,IMG_MEDIUM_WIDTH,IMG_MEDIUM_HEIGHT,IMG_SMALL_WIDTH,IMG_SMALL_HEIGHT,IMG_JPG_MEDIUM,IMG_JPG_SMALL);
@@ -210,7 +218,7 @@ if(isset($_GET['p'])&&$_GET['p']=="update"){
         // on récupère tous les auteurs
         $recupUsers = AllUser($db);
         // on récupère toutes les rubriques potentielles
-        $recup_categs = recupAllRubriques($db);
+        $recupCategs = recupAllRubriques($db);
 
 
     }else{
