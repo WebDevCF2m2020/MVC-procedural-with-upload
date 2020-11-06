@@ -159,8 +159,14 @@ if(isset($_GET['p'])&&$_GET['p']=="update"){
 
         // si on clique pour supprimer une image
         if(isset($_GET['delIMG'])&&ctype_digit($_GET['delIMG'])){
-            $deleteIMG = theimagesDelete($db,$_GET['delIMG'],$_GET['name'],IMG_UPLOAD_ORIGINAL,IMG_UPLOAD_MEDIUM,IMG_UPLOAD_SMALL);
+            // on supprime l'image de la DB
+            $deleteIMG = theimagesDelete($db,$_GET['delIMG'],$_GET['name']);
 
+            // si la suppression de la DB a fonctionnée
+            if($deleteIMG){
+                // on supprime physiquement les images
+                theimagesUnlink([IMG_UPLOAD_ORIGINAL,IMG_UPLOAD_MEDIUM,IMG_UPLOAD_SMALL],$_GET['name']);
+            }
             header("Location: ?p=update&id=$id");
             exit();
         }

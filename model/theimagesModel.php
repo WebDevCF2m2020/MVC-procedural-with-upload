@@ -34,17 +34,13 @@ function articles_has_theimagesInsert($c,$idarticles,$idtheimages){
 }
 
 // DELETE INTO theimages (the action off FK on DELETE articles_has_theimages is CASCADE) (and required deleteRealImages)
-function theimagesDelete($c,$idtheimages,$theimages_name,$foldersOri, $foldersMedium,$foldersSmall){
+function theimagesDelete($c,$idtheimages,$theimages_name){
     $idtheimages = (int) $idtheimages;
     $theimages_name = htmlentities(strip_tags(trim($theimages_name)),ENT_QUOTES);
     if(!empty($idtheimages)&&!empty($theimages_name)){
         // suppression de la DB (FK )
         $sql = "DELETE FROM theimages WHERE idtheimages=$idtheimages AND theimages_name='$theimages_name';";
         $req = mysqli_query($c,$sql) or die(mysqli_error($c));
-        // suppression physique
-        unlink($foldersOri.$theimages_name);
-        unlink($foldersMedium.$theimages_name);
-        unlink($foldersSmall.$theimages_name);
 
         return ($req)? true : false;
     }
@@ -250,6 +246,15 @@ function theimagesMakeThumbs($name, $largeurOri, $hauteurOri, $extension, $origi
         imagegif($newImg, $thumb . $name);
     }
 }
+
+// fonction pour supprimer physiquement des images
+function theimagesUnlink(array $folder, string $imagesName){
+    foreach ($folder as $dossier){
+        unlink($dossier.$imagesName);
+    }
+    return true;
+}
+
 /*
  * END
  * Upload Images functions
