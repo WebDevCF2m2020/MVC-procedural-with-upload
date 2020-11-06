@@ -52,6 +52,27 @@ function theimagesDelete($c,$idtheimages,$theimages_name,$foldersOri, $foldersMe
 
 /*
  * Upload Images functions
+ * $fichier => array $_FILES -> form enctype="multipart/form-data"
+ * $extension => array [".jpg",".png",...]
+ * $sizeMax => int 50000 (bytes) max
+ * $foldersOri => string path to original folder
+ * $foldersMedium => string path to resize images
+ * $foldersSmall => string path to crop images
+ * @optional
+ * $widthMedium => int max width in pixel for resize images
+ * $heightMedium => int max height in pixel for resize images
+ * $whidthSmall => int max width in pixel for crop images
+ * $heightSmall => int max height in pixel for crop images
+ * $qualityMedium => int compress jpg only (for resized images)
+ * $qualitySmall => int compress jpg only (for cropped images)
+ *
+ * require for use:
+ * theimagesVerifExtend()
+ * theimagesVerifSize()
+ * theimagesNewName()
+ * theimagesMakeResize()
+ * theimagesMakeThumbs()
+ *
  */
 function theimagesUpload(Array $fichier,$extension,$sizeMax,$foldersOri, $foldersMedium,$foldersSmall,$widthMedium=600,$heightMedium=400,$whidthSmall=100,$heightSmall=100,$qualityMedium=90,$qualitySmall=80) {
 
@@ -221,3 +242,7 @@ function theimagesMakeThumbs($name, $largeurOri, $hauteurOri, $extension, $origi
         imagegif($newImg, $thumb . $name);
     }
 }
+/*
+ * END
+ * Upload Images functions
+ */

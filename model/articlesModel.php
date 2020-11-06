@@ -65,6 +65,7 @@ function insertArticle($c,$title,$text,$id){
 
     $sql="INSERT INTO articles (articles_title,articles_text,users_idusers) VALUES ('$title','$text',$id);";
     $request = mysqli_query($c,$sql) or die(mysqli_error($c));
+    // si l'article est bien inséré, on renvoie son ID
     return ($request)? mysqli_insert_id($c) :false;
 }
 
@@ -78,7 +79,7 @@ function insertLinkArticlesWithRubriques($c,$idarticles,$tabIdRubriques){
         // on allonge notre requête SQL (évite des allez retour PHP/SQL)
         $sql .= "($idarticles,$item),";
     }
-    // on retire la virgule de fin avec substr
+    // on retire la virgule de fin avec substr pour éviter une faute SQL (la virgule doit être suivie de valeurs)
     $sql = substr($sql,0,-1);
     $query = mysqli_query($c,$sql) or die(mysqli_error($c));
     return ($query)? true: false;

@@ -60,7 +60,7 @@ if(isset($_GET['p'])&&$_GET['p']=="create"){
             // insertion d'article avec récupération de son id
             $insert = insertArticle($db,$titre,$texte,$idusers);
 
-            // insertion réussie (un id et pas 0)
+            // insertion réussie (un id et pas false)
             if($insert){
 
                 // si on a coché au moins une rubrique (existence de idrubriques)
@@ -75,11 +75,12 @@ if(isset($_GET['p'])&&$_GET['p']=="create"){
                 if(!empty($_FILES['theimages_name'])){
                     $upload = theimagesUpload($_FILES['theimages_name'],IMG_FORMAT,IMG_MAX_SIZE,IMG_UPLOAD_ORIGINAL,IMG_UPLOAD_MEDIUM,IMG_UPLOAD_SMALL,IMG_MEDIUM_WIDTH,IMG_MEDIUM_HEIGHT,IMG_SMALL_WIDTH,IMG_SMALL_HEIGHT,IMG_JPG_MEDIUM,IMG_JPG_SMALL);
 
-                    // l'image a bien été envoyée
+                    // l'image a bien été envoyée, donc on obtient un tableau
                     if(is_array($upload)){
                         // on insert l'image (et on récupère l'id de l'image)
                         $idtheimages = theimagesInsert($db,$_POST['theimages_title'],$upload[0],$insert);
 
+                    // en cas d'erreur (string)
                     }else{
                         $error = $upload;
                     }
