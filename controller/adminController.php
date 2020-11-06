@@ -172,7 +172,7 @@ if(isset($_GET['p'])&&$_GET['p']=="update"){
         }
 
 
-        // si le formualire est envoyé
+        // si le formualaire est envoyé
         if(isset($_POST['users_idusers'])){
 
             //var_dump($_POST);
@@ -203,10 +203,14 @@ if(isset($_GET['p'])&&$_GET['p']=="update"){
 
         // chargement pour la vue
 
-        // on récupère l'article en question
+        // on récupère l'article en question avec ses images
         $recupArticle = articleLoadFull($db,$id);
+        // on récupères les rubriques dont l'article fait partie
+        $recupRubrique = recupRubriquesByIdFromArticle($db,$id);
         // on récupère tous les auteurs
         $recupUsers = AllUser($db);
+        // on récupère toutes les rubriques potentielles
+        $recup_categs = recupAllRubriques($db);
 
 
     }else{

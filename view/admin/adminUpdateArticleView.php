@@ -113,7 +113,32 @@
                         endforeach;
                         ?>
                     </div>
-                    <h5>ON EST ICI</h5>
+                    <div class="form-group">
+                        <label for="exampleInputPassword5">Choix des rubriques</label>
+                        <?php
+                        // var_dump($recupRubrique);
+                        foreach ($recup_categs as $item):
+
+                            ?>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="idrubriques[]" id="exampleRadios5"
+                                       value="<?= $item['idrubriques'] ?>" <?php
+                                // boucle pour la correspondance entre les rubriques liées à l'article
+                                foreach ($recupRubrique as $rub):
+                                    // ternaire pour cocher les rubriques par défaut de l'article
+                                    echo ($item['idrubriques']==$rub['idrubriques'])? "checked":"";
+                                endforeach;
+
+                                ?>>
+                                <label class="form-check-label" for="exampleRadios5">
+                                    <?= $item['rubriques_titre'] ?>
+                                </label>
+                            </div>
+
+                        <?php
+                        endforeach;
+                        ?>
+                    </div>
                     <button type="submit" class="btn btn-primary">Mettre à jour</button>
                     <hr>
                     <h3>Ajouter une image</h3>
