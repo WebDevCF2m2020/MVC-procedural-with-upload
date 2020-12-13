@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3308
--- Généré le :  ven. 06 nov. 2020 à 12:28
--- Version du serveur :  5.7.28
--- Version de PHP :  7.3.12
+-- Hôte : sql8614.phpnet.org:3306
+-- Généré le : Dim 13 déc. 2020 à 17:13
+-- Version du serveur :  10.3.25-MariaDB-1:10.3.25+maria~stretch-log
+-- Version de PHP : 7.3.19-1~deb10u1
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -14,7 +14,7 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 --
--- Base de données :  `mvc_proc_upload`
+-- Base de données : `mvc_proc_upload`
 --
 CREATE DATABASE IF NOT EXISTS `mvc_proc_upload` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `mvc_proc_upload`;
@@ -26,16 +26,13 @@ USE `mvc_proc_upload`;
 --
 
 DROP TABLE IF EXISTS `articles`;
-CREATE TABLE IF NOT EXISTS `articles` (
-                                          `idarticles` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-                                          `articles_title` varchar(150) NOT NULL,
-                                          `articles_text` text NOT NULL,
-                                          `articles_date` datetime DEFAULT CURRENT_TIMESTAMP,
-                                          `users_idusers` int(10) UNSIGNED DEFAULT NULL,
-                                          PRIMARY KEY (`idarticles`),
-                                          UNIQUE KEY `titre_UNIQUE` (`articles_title`),
-                                          KEY `fk_articles_users_idx` (`users_idusers`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+CREATE TABLE `articles` (
+                            `idarticles` int(10) UNSIGNED NOT NULL,
+                            `articles_title` varchar(150) NOT NULL,
+                            `articles_text` text NOT NULL,
+                            `articles_date` datetime DEFAULT current_timestamp(),
+                            `users_idusers` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `articles`
@@ -58,7 +55,11 @@ INSERT INTO `articles` (`idarticles`, `articles_title`, `articles_text`, `articl
 (48, 'erytydrty', 'grfjhytj', '2020-10-30 12:18:00', 3),
 (49, 'Carte confinement : notre sélection d&#039;outils pour calculer le déplacement de 1 km autour de chez vous', 'Alors que le confinement limite à nouveau les déplacements des Français, Clubic vous propose une liste d&#039;outils indispensables qui vous aideront à ne pas sortir des clous des restrictions du gouvernement.\r\n\r\nOn se souviendra du vendredi 30 octobre 2020 comme le début du deuxième confinement imposé par l&#039;État aux Français, dans le cadre de la pandémie de Covid-19, qui a fait plus de 36 000 morts dans le pays depuis le début de l&#039;année. Comme au printemps, les déplacements sont interdits, mais des exceptions sont toutefois possibles, à l&#039;aide d&#039;une attestation qu&#039;on ne peut que vous conseiller de télécharger ou d&#039;imprimer depuis le site du gouvernement. Certains déplacements brefs sont par exemple autorisés, mais dans un rayon maximal d&#039;un kilomètre et dans la limite d&#039;une heure par jour. Pour savoir jusqu&#039;où vous pouvez mettre les pieds pour vos balades, votre footing ou vos sorties avec Junior, plusieurs outils, gratuits, sont à votre disposition en ligne. Clubic vous propose sa sélection.\r\n\r\n1. Géoportail, le précis « gouvernemental »\r\n\r\nLe portail Web géographique du gouvernement, Géoportail, a trouvé ces derniers mois une nouvelle utilité. Déjà plébiscité par les Français lors du premier confinement, l&#039;outil devrait à nouveau trouver son intérêt auprès du public avec sa carte.\r\n\r\nAprès avoir accédé aux outils cartographiques en cliquant en haut à droite sur la petite clé plate, il vous suffit de cliquer sur l&#039;onglet « Mesures » puis de choisir l&#039;option « Calculer une isochrone ». Ensuite, vous n&#039;avez plus qu&#039;à entrer votre adresse et à bien sélectionner le bouton « isodistance » en rentrant « 1 », correspondant à la distance de déplacement autorisée autour de votre domicile, et à choisir le mode piéton, avant d&#039;appuyer sur le bouton « Calculer » pour voir le résultat.\r\n\r\nEt celui-ci est tout à fait convenable. L&#039;outil est plutôt intelligent, puisqu&#039;il délimite directement un périmètre défini en fonction du paysage, de l&#039;aménagement ou de la topographie du territoire où vous vous trouvez. Par exemple, en choisissant un lieu situé en bord de mer, la carte prend soin de découper les limites.', '2020-10-30 12:27:30', 2),
 (50, 'La loi de programmation de la recherche va programmer… la fin de la recherche française', 'Du gel des postes aux financements privés, le projet de loi s&#039;éloigne de plus en plus de l&#039;intérêt commun. La LPR doit être abandonnée afin de sauvegarder un enseignement supérieur et une recherche scientifique démocratiques, équitables et publics.\r\n\r\nNous rappelons que le préambule de la Constitution française de 1958 garantit l’équité d’accès pour toutes et tous à l’éducation, c’est-à-dire l’accès pour toutes et tous aux formations primaires, secondaires mais également supérieures. Malgré des soubresauts à chaque changement gouvernemental, le système est arrivé entre les années 1970 et 2000 à une relative équité de moyens humains et financiers entre établissements universitaires publics pour exercer leurs missions.\r\n\r\nAinsi, au sein des 85 universités françaises réparties sur le territoire, le citoyen pouvait être assuré de bénéficier d’une formation de qualité proche de lui, dispensée par des personnels qualifiés ; qualifications garanties par des normes nationales de formation et de recrutement. Mais dès les années 90, des rapports successifs au sein de l’Organisation de coopération et de développement économiques (OCDE) ont pointé le désinvestissement de la recherche privée entrepreneuriale, cœur de la recherche appliquée. La Commission européenne s’est alors portée à son chevet au travers d’une politique stratégique d’assujettissement à moyen terme de l’éducation et de la recherche publiques européennes au monde économique privé.\r\n\r\nLa course aux financements\r\nSur le plan de la recherche, ce sont les financements dits par appels à projet qui se déploient au détriment des financements dits récurrents, pérennes, des laboratoires. Ces financements par à-coups (typiquement de un à trois ans) limitent les bénéficiaires, flèchent et restreignent drastiquement les thématiques de recherche vers les besoins du privé (principalement du secteur industriel) et instaurent la mise en concurrence entre tous les acteurs : individus, laboratoires, établissements. Le temps consacré à la recherche elle-même en pâtit de par la multiplication du temps pour courir après son financement.\r\n\r\nLa raréfaction des moyens récurrents pousse progressivement les chercheurs à orienter leur travail sur les thématiques financées, laissant de côté des pans entiers de recherche, notamment la recherche fondamentale. Bien que garanties par le code de la recherche, l’indépendance et la liberté des chercheurs se trouvent de fait soumises au diktat des agences et aux interférences de l’Etat. Le Covid-19, thématique de recherche devenue moins «porteuse», en est un exemple criant. Toutes les disciplines scientifiques sont touchées, mais plus particulièrement celles des sciences humaines et sociales. Or n’oublions pas que la recherche alimente la mise à jour des contenus de formations du supérieur.\r\n\r\nPrises en étau entre une sous-dotation organisée, caractérisée par le «gel» de postes et les embauches de vacataires, et une augmentation des charges avec l’augmentation du nombre d’étudiants ou l’internationalisation des recherches, bon nombre d’universités sont au bord de la rupture et sabrent dans les formations, faisant de fait voler en éclat l’équité territoriale de l’ESR.\r\n\r\nLa LPR, présentée comme la solution, pourrait être l’acte de décès de notre système universitaire de service public. Cette loi sanctuarise les inégalités entre établissements, entre personnels et entre usagers : d’un côté les universités d’excellence, de l’autre celles de proximité. Cela ne doit pas avoir lieu. L’équité sur tout le territoire des établissements universitaires doit redevenir une clé de voûte de la Constitution française ! Cette loi renforcera les luttes intestines pour trouver des moyens de travail au lieu de fédérer les énergies pour irriguer la société de nouveaux savoirs. Elle favorisera les dérives vers des abus d’autorité jusqu’aux méconduites scientifiques.', '2020-10-30 14:48:04', 3),
-(51, 'Construire un menu arborescent avec une fonction récursive en PHP 7', 'Un sujet assez difficile à comprendre dans le monde de la programmation web pour plusieurs webmasters qui ont appris par eux-mêmes, dont je fais parti, est la technique de récursivité, où une fonction fait appel à elle-même. Cette fonction est dit récursive dans ce cas, et elle peut être nécessaire dans plusieurs situations, telles que la création d’un menu arborescent complexe où le nombre de sous-catégories n’est pas prévisible.\r\n\r\n\r\nCommençons par la structure d’une base de donnée MySQL simple et typique pour ces catégories. Celle-ci est une table, appelée Animaux, contenant une liste de catégories, avec leur identification propre, leur nom, et leur lien de parenté avec une autre catégorie, si elle est en fait une sous catégorie de celle-ci dans une menu arborescent.', '2020-11-06 10:26:40', 2);
+(51, 'Construire un menu arborescent avec une fonction récursive en PHP 7', 'Un sujet assez difficile à comprendre dans le monde de la programmation web pour plusieurs webmasters qui ont appris par eux-mêmes, dont je fais parti, est la technique de récursivité, où une fonction fait appel à elle-même. Cette fonction est dit récursive dans ce cas, et elle peut être nécessaire dans plusieurs situations, telles que la création d’un menu arborescent complexe où le nombre de sous-catégories n’est pas prévisible.\r\n\r\n\r\nCommençons par la structure d’une base de donnée MySQL simple et typique pour ces catégories. Celle-ci est une table, appelée Animaux, contenant une liste de catégories, avec leur identification propre, leur nom, et leur lien de parenté avec une autre catégorie, si elle est en fait une sous catégorie de celle-ci dans une menu arborescent.', '2020-11-06 10:26:40', 2),
+(52, 'Présidentielle américaine: Trump exige un recomptage dans un État clé', 'L’équipe de campagne du président a transféré 3 millions de dollars pour un recomptage partiel, selon la commission électorale du Wisconsin.\r\n\r\nPrésidentielle américaine: Trump exige un recomptage dans un État clé.\r\n\r\nLe président américain Donald Trump veut recompter une partie des votes dans l’État du Wisconsin. L’équipe de campagne du président a transféré 3 millions de dollars pour un recomptage partiel, selon la commission électorale de l’État.', '2020-11-19 20:43:18', 1),
+(53, 'Coronavirus en Belgique: les autorités constatent trop de monde à Bruges et Bruxelles', 'La police de Bruges demande au public de ne pas se rendre au festival des lumières durant ce week-end en raison d&#039;une affluence trop importante. Le bourgmestre de Bruxelles, lui, appelle au respect des consignes sanitaires alors que beaucoup de gens ont rallié, ce samedi, le centre de la capitale.\r\n\r\nLa 2e édition de &#039;Wintergloed&#039; a débuté vendredi dans le centre de Bruges. Dans ce cadre, des installations lumineuses ont été disposées dans dix lieux emblématiques de la ville.\r\n\r\nA Bruxelles, les illuminations et le sapin de Noël de la Grand Place ont également attiré beaucoup de monde. Trop, selon le bourgmestre de la Ville, Philippe Close. &quot;Beaucoup de gens se sont rendus dans le centre ville aujourd&#039;hui. Malheureusement trop de gens en même temps. Nous demandons à chacun d&#039;entre vous de respecter toutes les consignes sanitaires. Nous devons absolument poursuivre, ensemble, nos efforts&quot;, a-t-il tweeté samedi soir.', '2020-11-29 08:09:36', 3),
+(54, 'France : 500.000 manifestants contre la loi &quot;sécurité globale&quot; selon les organisateurs, 133.000 selon les autorités', 'Les marches des libertés contre le texte de loi sécurité globale et les violences policières ont rassemblé samedi en France 133.000 personnes, selon un comptage du ministère de l&#039;Intérieur effectué à 18H00. Les organisateurs des &quot;marches des libertés&quot; contre le texte de loi sécurité globale et les violences policières estiment quant à eux que 500.000 manifestants paradé dans les rues de France.\r\n\r\nLes manifestants ont défilé ce samedi en France contre le texte de loi &quot;sécurité globale&quot; et sa mesure phare, qui prévoit de restreindre la possibilité de filmer les forces de l&#039;ordre, mais aussi contre les violences policières et le racisme.\r\n\r\n&quot;Laissez nous filmer, laissez nous respirer&quot;\r\nDe multiples rassemblements se sont tenus un peu partout dans l’Hexagone, contre ce texte jugé attentatoire à &quot;la liberté d’expression&quot; et à &quot;l’Etat de droit&quot; par ses opposants.\r\n\r\nPlusieurs milliers de personnes, 6.000 selon la préfecture, ont manifesté dans le centre-ville de Bordeaux contre la loi &quot;sécurité globale&quot;, la plus importante manifestation dans cette ville depuis la crise des &quot;gilets jaunes&quot;, ont constaté des journalistes de l&#039;AFP.\r\n\r\n&quot;Vos armes, nos caméras&quot;, &quot;Je suis Michel Zecler&quot;, &quot;Laissez nous filmer, laissez nous respirer&quot;, &quot;bienvenue sur la planète taire&quot; ou &quot;Flouter tue&quot;, pouvait-on lire sur des pancartes dans le cortège, sur lequel flottait les drapeaux de nombreuses organisations de gauche.\r\n\r\nA Montpellier (sud), ils étaient 4 à 5000, brandissant des pancartes clamant &quot;Plus de flics que de médecins - sens des priorités&quot; ou &quot;Démocratie floutée&quot;. A Rennes (ouest), Maud, 45 ans, était là pour protester contre ce &quot;réel déni démocratique&quot; et la &quot;dérive autoritaire.', '2020-11-29 08:15:02', 2),
+(55, '«Louvain-le-Mec»: Dérive sexiste ou humour entre étudiants?', 'Cette page se veut une réponse humoristique au groupe Louvain-la-meuf, réservé aux filles et dont l&#039;objectif est d&#039;entretenir la solidarité et l&#039;entraide féminine à Louvain-la-Neuve. Les autorités de l&#039;UCLouvain estiment que certains contenus de Louvain-le-mec incompatibles avec les valeurs de l&#039;université et les condamnent fermement. Les administrateurs de la page identifiés comme étudiants de l&#039;UCLouvain ont été convoqués. Alors que Louvain-la-meuf est un groupe construit pour garantir un espace sécurisé réunissant les femmes de Louvain-la-Neuve avec une non-mixité choisie comme un outil politique, Louvain-le-mec se veut une réponse sarcastique à la démarche. &quot;Sous couvert d&#039;humour, des propos sexistes, oppressifs, homophobes, fascisants se sont multipliés. La femme est réduite au rang de lave-vaisselle, les hommes homosexuels sont rabaissés, les actions militantes de lutte contre le sexisme sont moquées, le droit à l&#039;avortement y est vivement attaqué, des drapeaux du Vlaams Belang exhibés. Notons que ce genre de groupe a de grandes similarités avec d&#039;autres boysclubs qui ont été récemment dévoilés&quot;, dénonce le communiqué qui appèle au démantèlement de cette page Facebook.\r\n\r\nDu côté de l&#039;UCLouvain, on confirme que les administrateurs de la page Louvain-le-mec qui ont pu être identifiés comme étudiants de l&#039;université ont été convoqués par le vice-recteur aux affaires étudiantes, Philippe Hiligsmann. L&#039;UCLouvain rappelle qu&#039;elle n&#039;a pas vraiment de prise sur l&#039;existence d&#039;un groupe constitué sur Facebook et dont le nom n&#039;utilise pas celui de l&#039;université. Par contre, l&#039;incompatibilité de certains contenus de la page Louvain-le-mec avec les valeurs de l&#039;UCLouvain sont soulignées.\r\n\r\n&quot;La page se veut satirique mais on ne peut pas admettre certains propos sexistes, homophobes, transphobes... Toute la gamme des violences verbales est présente sur cette page et nous le dénonçons fermement. Des étudiants ont été convoqués pour leur signaliser le caractère inadmissible des propos tenus. Ces contenus sont en porte-à-faux avec l&#039;article 34 de notre Règlement des études et des examens, qui concerne les valeurs de l&#039;Université. Des sanctions disciplinaires peuvent s&#039;appliquer: elles vont de l&#039;avertissement jusqu&#039;au renvoi définitif. Leur mise en œuvre est de la compétence du vice-recteur aux affaires étudiantes et c&#039;est lui qui évalue la situation&quot;, indique mercredi soir la conseillère du recteur à la politique de genre, Tania Van Hemelryck.', '2020-11-29 08:20:24', 1);
 
 -- --------------------------------------------------------
 
@@ -67,12 +68,9 @@ INSERT INTO `articles` (`idarticles`, `articles_title`, `articles_text`, `articl
 --
 
 DROP TABLE IF EXISTS `articles_has_rubriques`;
-CREATE TABLE IF NOT EXISTS `articles_has_rubriques` (
-                                                        `articles_idarticles` int(10) UNSIGNED NOT NULL,
-                                                        `rubriques_idrubriques` int(10) UNSIGNED NOT NULL,
-                                                        PRIMARY KEY (`articles_idarticles`,`rubriques_idrubriques`),
-                                                        KEY `fk_articles_has_rubriques_rubriques1_idx` (`rubriques_idrubriques`),
-                                                        KEY `fk_articles_has_rubriques_articles1_idx` (`articles_idarticles`)
+CREATE TABLE `articles_has_rubriques` (
+                                          `articles_idarticles` int(10) UNSIGNED NOT NULL,
+                                          `rubriques_idrubriques` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -80,60 +78,71 @@ CREATE TABLE IF NOT EXISTS `articles_has_rubriques` (
 --
 
 INSERT INTO `articles_has_rubriques` (`articles_idarticles`, `rubriques_idrubriques`) VALUES
-(3, 6),
-(41, 6),
-(47, 6),
-(2, 7),
-(37, 7),
-(39, 7),
-(40, 7),
-(46, 7),
-(48, 7),
-(49, 7),
-(50, 7),
-(51, 7),
-(40, 8),
-(44, 8),
-(37, 9),
-(40, 9),
-(41, 9),
-(46, 9),
-(48, 9),
-(50, 9),
 (1, 10),
-(40, 10),
-(48, 10),
+(2, 7),
 (2, 11),
+(2, 12),
+(2, 14),
+(3, 6),
+(3, 14),
+(37, 7),
+(37, 9),
 (37, 11),
+(37, 13),
 (38, 11),
+(38, 13),
+(39, 7),
 (39, 11),
+(39, 13),
+(40, 7),
+(40, 8),
+(40, 9),
+(40, 10),
+(40, 12),
+(41, 6),
+(41, 9),
+(41, 12),
 (43, 11),
+(43, 12),
+(44, 8),
 (44, 11),
 (45, 11),
-(46, 11),
-(47, 11),
-(50, 11),
-(2, 12),
-(40, 12),
-(41, 12),
-(43, 12),
 (45, 12),
+(46, 7),
+(46, 9),
+(46, 11),
 (46, 12),
-(47, 12),
-(49, 12),
-(50, 12),
-(37, 13),
-(38, 13),
-(39, 13),
-(47, 13),
-(49, 13),
-(50, 13),
-(51, 13),
-(2, 14),
-(3, 14),
 (46, 14),
+(47, 6),
+(47, 11),
+(47, 12),
+(47, 13),
+(48, 7),
+(48, 9),
+(48, 10),
 (48, 14),
-(50, 14);
+(49, 7),
+(49, 12),
+(49, 13),
+(50, 7),
+(50, 9),
+(50, 11),
+(50, 12),
+(50, 13),
+(50, 14),
+(51, 7),
+(51, 13),
+(52, 6),
+(52, 7),
+(52, 12),
+(53, 6),
+(53, 12),
+(53, 14),
+(54, 7),
+(54, 9),
+(54, 12),
+(55, 6),
+(55, 12);
 
 -- --------------------------------------------------------
 
@@ -142,12 +151,9 @@ INSERT INTO `articles_has_rubriques` (`articles_idarticles`, `rubriques_idrubriq
 --
 
 DROP TABLE IF EXISTS `articles_has_theimages`;
-CREATE TABLE IF NOT EXISTS `articles_has_theimages` (
-                                                        `articles_idarticles` int(10) UNSIGNED NOT NULL,
-                                                        `theimages_idtheimages` int(10) UNSIGNED NOT NULL,
-                                                        PRIMARY KEY (`articles_idarticles`,`theimages_idtheimages`),
-                                                        KEY `fk_articles_has_theimages_theimages1_idx` (`theimages_idtheimages`),
-                                                        KEY `fk_articles_has_theimages_articles1_idx` (`articles_idarticles`)
+CREATE TABLE `articles_has_theimages` (
+                                          `articles_idarticles` int(10) UNSIGNED NOT NULL,
+                                          `theimages_idtheimages` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -155,28 +161,33 @@ CREATE TABLE IF NOT EXISTS `articles_has_theimages` (
 --
 
 INSERT INTO `articles_has_theimages` (`articles_idarticles`, `theimages_idtheimages`) VALUES
-(3, 18),
 (2, 19),
 (2, 20),
+(3, 18),
 (37, 21),
 (38, 23),
+(39, 31),
+(39, 32),
+(39, 35),
 (40, 25),
 (40, 26),
 (40, 27),
 (41, 28),
-(39, 31),
-(39, 32),
 (43, 34),
-(39, 35),
+(43, 40),
 (44, 36),
 (44, 37),
-(43, 40),
 (45, 41),
 (46, 42),
 (47, 43),
 (49, 44),
 (50, 45),
-(51, 46);
+(51, 46),
+(52, 49),
+(53, 50),
+(53, 51),
+(54, 52),
+(55, 53);
 
 -- --------------------------------------------------------
 
@@ -185,12 +196,10 @@ INSERT INTO `articles_has_theimages` (`articles_idarticles`, `theimages_idtheima
 --
 
 DROP TABLE IF EXISTS `permissions`;
-CREATE TABLE IF NOT EXISTS `permissions` (
-                                             `idpermissions` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-                                             `permissions_name` varchar(100) NOT NULL,
-                                             PRIMARY KEY (`idpermissions`),
-                                             UNIQUE KEY `droit_name_UNIQUE` (`permissions_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+CREATE TABLE `permissions` (
+                               `idpermissions` int(10) UNSIGNED NOT NULL,
+                               `permissions_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `permissions`
@@ -208,14 +217,12 @@ INSERT INTO `permissions` (`idpermissions`, `permissions_name`) VALUES
 --
 
 DROP TABLE IF EXISTS `rubriques`;
-CREATE TABLE IF NOT EXISTS `rubriques` (
-                                           `idrubriques` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-                                           `rubriques_titre` varchar(120) NOT NULL,
-                                           `rubriques_text` varchar(500) DEFAULT NULL,
-                                           `rubriques_idrubriques` int(10) UNSIGNED DEFAULT '0',
-                                           PRIMARY KEY (`idrubriques`),
-                                           KEY `fk_rubriques_rubriques1_idx` (`rubriques_idrubriques`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+CREATE TABLE `rubriques` (
+                             `idrubriques` int(10) UNSIGNED NOT NULL,
+                             `rubriques_titre` varchar(120) NOT NULL,
+                             `rubriques_text` varchar(500) DEFAULT NULL,
+                             `rubriques_idrubriques` int(10) UNSIGNED DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `rubriques`
@@ -239,13 +246,11 @@ INSERT INTO `rubriques` (`idrubriques`, `rubriques_titre`, `rubriques_text`, `ru
 --
 
 DROP TABLE IF EXISTS `theimages`;
-CREATE TABLE IF NOT EXISTS `theimages` (
-                                           `idtheimages` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-                                           `theimages_title` varchar(400) DEFAULT NULL,
-                                           `theimages_name` varchar(60) NOT NULL,
-                                           PRIMARY KEY (`idtheimages`),
-                                           UNIQUE KEY `theimages_name_UNIQUE` (`theimages_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
+CREATE TABLE `theimages` (
+                             `idtheimages` int(10) UNSIGNED NOT NULL,
+                             `theimages_title` varchar(400) DEFAULT NULL,
+                             `theimages_name` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `theimages`
@@ -273,7 +278,12 @@ INSERT INTO `theimages` (`idtheimages`, `theimages_title`, `theimages_name`) VAL
 (43, 'CCB', '20201030080537-70543.png'),
 (44, 'Clubic', '20201030122730-32704.png'),
 (45, 'Dans un laboratoire qui travaille sur un traitement contre le coronavirus, en f&eacute;vrier.', '20201030144804-88533.jpg'),
-(46, 'fonction r&eacute;cursive', '20201106102641-71220.gif');
+(46, 'fonction r&eacute;cursive', '20201106102641-71220.gif'),
+(49, 'Trump', '20201119204318-10634.jpg'),
+(50, 'Trop de monde &agrave; Bruxelles', '20201129080936-55164.jpg'),
+(51, 'Tweet', '20201129081012-49422.jpg'),
+(52, 'Manifestations en France', '20201129081502-61925.jpg'),
+(53, 'Humour ou d&eacute;rive sexiste?', '20201129082024-54921.jpg');
 
 -- --------------------------------------------------------
 
@@ -282,15 +292,12 @@ INSERT INTO `theimages` (`idtheimages`, `theimages_title`, `theimages_name`) VAL
 --
 
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-                                       `idusers` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-                                       `users_name` varchar(45) DEFAULT NULL,
-                                       `users_pwd` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'Le binaire permet au mot de passe d''être sensible à la casse (minuscule, majuscule)',
-                                       `permissions_idpermissions` int(10) UNSIGNED DEFAULT NULL,
-                                       PRIMARY KEY (`idusers`),
-                                       UNIQUE KEY `users_name_UNIQUE` (`users_name`),
-                                       KEY `fk_users_permissions_id` (`permissions_idpermissions`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+CREATE TABLE `users` (
+                         `idusers` int(10) UNSIGNED NOT NULL,
+                         `users_name` varchar(45) DEFAULT NULL,
+                         `users_pwd` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'Le binaire permet au mot de passe d''être sensible à la casse (minuscule, majuscule)',
+                         `permissions_idpermissions` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `users`
@@ -300,6 +307,97 @@ INSERT INTO `users` (`idusers`, `users_name`, `users_pwd`, `permissions_idpermis
 (1, 'myNameIsAdmin', 'myNameIsAdmin', 1),
 (2, 'myNameIsEditor', 'myNameIsEditor', 2),
 (3, 'myNameIsModerator', 'myNameIsModerator', 3);
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `articles`
+--
+ALTER TABLE `articles`
+    ADD PRIMARY KEY (`idarticles`),
+    ADD UNIQUE KEY `titre_UNIQUE` (`articles_title`),
+    ADD KEY `fk_articles_users_idx` (`users_idusers`);
+
+--
+-- Index pour la table `articles_has_rubriques`
+--
+ALTER TABLE `articles_has_rubriques`
+    ADD PRIMARY KEY (`articles_idarticles`,`rubriques_idrubriques`),
+    ADD KEY `fk_articles_has_rubriques_rubriques1_idx` (`rubriques_idrubriques`),
+    ADD KEY `fk_articles_has_rubriques_articles1_idx` (`articles_idarticles`);
+
+--
+-- Index pour la table `articles_has_theimages`
+--
+ALTER TABLE `articles_has_theimages`
+    ADD PRIMARY KEY (`articles_idarticles`,`theimages_idtheimages`),
+    ADD KEY `fk_articles_has_theimages_theimages1_idx` (`theimages_idtheimages`),
+    ADD KEY `fk_articles_has_theimages_articles1_idx` (`articles_idarticles`);
+
+--
+-- Index pour la table `permissions`
+--
+ALTER TABLE `permissions`
+    ADD PRIMARY KEY (`idpermissions`),
+    ADD UNIQUE KEY `droit_name_UNIQUE` (`permissions_name`);
+
+--
+-- Index pour la table `rubriques`
+--
+ALTER TABLE `rubriques`
+    ADD PRIMARY KEY (`idrubriques`),
+    ADD KEY `fk_rubriques_rubriques1_idx` (`rubriques_idrubriques`);
+
+--
+-- Index pour la table `theimages`
+--
+ALTER TABLE `theimages`
+    ADD PRIMARY KEY (`idtheimages`),
+    ADD UNIQUE KEY `theimages_name_UNIQUE` (`theimages_name`);
+
+--
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+    ADD PRIMARY KEY (`idusers`),
+    ADD UNIQUE KEY `users_name_UNIQUE` (`users_name`),
+    ADD KEY `fk_users_permissions_id` (`permissions_idpermissions`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `articles`
+--
+ALTER TABLE `articles`
+    MODIFY `idarticles` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+
+--
+-- AUTO_INCREMENT pour la table `permissions`
+--
+ALTER TABLE `permissions`
+    MODIFY `idpermissions` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `rubriques`
+--
+ALTER TABLE `rubriques`
+    MODIFY `idrubriques` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT pour la table `theimages`
+--
+ALTER TABLE `theimages`
+    MODIFY `idtheimages` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+    MODIFY `idusers` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées
