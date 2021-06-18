@@ -56,6 +56,10 @@
                 else:
                     ?>
                     <h2>Notre article : <?= $recup['articles_title'] ?></h2>
+                    <div class="alert alert-dark" role="alert">
+  Ce site est un travail scolaire et n'est pas référencé, il est en lien avec ce référentiel 
+  <a href="https://github.com/WebDevCF2m2020/MVC-procedural-with-upload" target="_blank">Github</a>.<br> Ce site est un exemple de MVC en PHP/MySQL procédural d'une administration avec Upload d'images redimensionnées.
+                    </div>
                     <p class="lead"><a href="./">Retournez à l'accueil</a></p>
                     <p>
                         <?php

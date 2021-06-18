@@ -29,6 +29,10 @@ Pour lancer le projet, vous devez impérativement partir du dossier public et ut
 #### En construction - V1.0 fonctionnelle !
     Login : myNameIsAdmin
     PWD : myNameIsAdmin
+
+### A tester à cette adresse:
+
+https://mvc-procedural-with-upload.webdev-cf2m.be/
     
 ## Connexion en tant que rédacteur/éditeur:
 #### A construire !
